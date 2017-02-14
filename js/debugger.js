@@ -14,11 +14,7 @@ function generateAssembly(){
 function showPFM(){
 	var pfmArr = STC90C51.PFM,
 		content = "";
-	for(var i=0,len=pfmArr.length;i<len;i++){
-		var temp = pfmArr[i];
-		if(!temp)break;
-		content += temp+" ";
-	}
+	content = pfmArr.join(" ");
 	var p = document.getElementById("pfm");
 	p.innerText = content;
 }
