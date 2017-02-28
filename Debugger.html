@@ -7,6 +7,7 @@
     <style type="text/css" rel="sheet">
     #wrap {
         width: 1300px;
+        color: white;
     }
     
     #left {
@@ -34,7 +35,6 @@
     
     .cur {
         background: #fcf34e;
-        color: white;
     }
     
     #SFRsName {
@@ -54,7 +54,12 @@
             <fieldset>
                 <legend>Assembly</legend>
                 <ul id="code">
-                    <li class="cur">ADD A,direct</li>
+                    <li class="cur">ADD A,60H</li>
+                    <li>MOV A,80H</li>
+                    <li>INC</li>
+                    <li>JZ</li>
+                    <li>LCALL 0016H</li>
+                    <li>MOV R0,#60H</li>
                 </ul>
             </fieldset>
         </div>
@@ -70,7 +75,7 @@
                 <legend>control</legend>
                 <input type="file" name="file" id="file" style="display: none" />
                 <input type="button" id="upload" value="Upload" onclick="document.getElementById('file').click();">
-                <input type="text" id="breakpoint" placeholder="PC Value">
+                <input type="text" id="breakpoint" placeholder="Break Point">
                 <input type="button" id="addBreak" value="AddBreak">
                 <input type="button" id="step" value="Step">
                 <input type="button" id="pause" value="Pause">

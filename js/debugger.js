@@ -1,16 +1,25 @@
-//根据机器码生成对应汇编语言
+/**
+ * 根据机器码生成对应汇编语言
+ * 思路:每执行一条,将指令中的代码存入PFM2中,如果PFM2没有相应的指令则说明指令没有执行过,则反汇编输出到屏幕。直到PFM2与PFM中的一致时，说明返回编完成，停止反汇编并复位。
+ * @return 
+ */
 function generateAssembly(){
 	STC90C51.PC = 0;
-	var code = STC90C51.PFM[STC90C51.PC];
+	var PFM2 = [];
 	while(1){
-		if(!code)return;
+		if(PFM2[STC90C51.PC] !== STC90C51.PFM[STC90C51.PC]){
+			PFM2[STC90C51.PC] = STC90C51.PFM[STC90C51.PC];
+			var temp = STC90C51.PC;
+			PFM2[temp] = STC90C51.PFM[temp];
+		}
+		if(STC90C51.PFM == PFM2)break;
 		switch(code){
 
 		}
 	}
 }
 
-//显示PFM数据到#pfm的段落
+//显示PFM数据到id为pfm的段落
 function showPFM(){
 	var pfmArr = STC90C51.PFM,
 		content = "";
