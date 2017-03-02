@@ -7,7 +7,7 @@ function generateAssembly(){
 	STC90C51.PC = 0;
 	var PFM2 = [];
 	while(1){
-		if(PFM2[STC90C51.PC] !== STC90C51.PFM[STC90C51.PC]){
+		if(PFM2[STC90C51.PC] != STC90C51.PFM[STC90C51.PC]){
 			PFM2[STC90C51.PC] = STC90C51.PFM[STC90C51.PC];
 			var temp = STC90C51.PC;
 			PFM2[temp] = STC90C51.PFM[temp];

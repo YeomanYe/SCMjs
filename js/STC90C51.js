@@ -413,7 +413,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 3
 			};
 			return retData;
 		},
@@ -452,7 +452,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -489,7 +489,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 3
 			};
 			return retData;
 		},
@@ -510,7 +510,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 3
 			};
 			return retData;
 		},
@@ -549,7 +549,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -585,7 +585,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 3
 			};
 			return retData;
 		},
@@ -628,7 +628,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -642,7 +642,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -678,7 +678,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 3
 			};
 			return retData;
 		},
@@ -774,7 +774,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -795,7 +795,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -828,7 +828,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -845,7 +845,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -860,7 +860,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 3
 			};
 			return retData;
 		},
@@ -874,7 +874,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -889,7 +889,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -922,7 +922,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -939,7 +939,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -954,7 +954,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 3
 			};
 			return retData;
 		},
@@ -968,7 +968,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -983,7 +983,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1016,7 +1016,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1033,7 +1033,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1048,7 +1048,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 3
 			};
 			return retData;
 		},
@@ -1062,7 +1062,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1077,7 +1077,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1110,7 +1110,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1127,7 +1127,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1154,7 +1154,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1168,7 +1168,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 3
 			};
 			return retData;
 		},
@@ -1200,7 +1200,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1217,7 +1217,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1260,7 +1260,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 3
 			};
 			return retData;
 		},
@@ -1295,7 +1295,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 3
 			};
 			return retData;
 		},
@@ -1316,7 +1316,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1352,7 +1352,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1372,7 +1372,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1429,7 +1429,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1500,7 +1500,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1516,7 +1516,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1547,7 +1547,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 3
 			};
 			return retData;
 		},
@@ -1562,7 +1562,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 3
 			};
 			return retData;
 		},
@@ -1596,7 +1596,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1611,7 +1611,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1652,7 +1652,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1687,7 +1687,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1702,7 +1702,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1754,7 +1754,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 3
 			};
 			return retData;
 		},
@@ -1825,7 +1825,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1893,7 +1893,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 1
+				num: 2
 			};
 			return retData;
 		},
@@ -1930,11 +1930,11 @@ function AJMP() {
 	console.log(asStr);
 	var retData = {
 		asStr: asStr,
-		num: 1
+		num: 2
 	};
 	return retData;
 }
-//ACALL addr11
+//ACALL addr11 2
 function ACALL() {
 	var addrh = STC90C51.PFM[STC90C51.PC] & 0XE0,
 		addrl = STC90C51.PFM[++STC90C51.PC];
@@ -1950,7 +1950,7 @@ function ACALL() {
 	console.log(asStr);
 	var retData = {
 		asStr: asStr,
-		num: 1
+		num: 2
 	};
 	return retData;
 }
@@ -2027,7 +2027,7 @@ function R_Factory(key) {
 					console.log(asStr);
 					var retData = {
 						asStr: asStr,
-						num: 1
+						num: 2
 					};
 					return retData;
 				};
@@ -2072,7 +2072,7 @@ function R_Factory(key) {
 					console.log(asStr);
 					var retData = {
 						asStr: asStr,
-						num: 1
+						num: 2
 					};
 					return retData;
 				};
@@ -2178,7 +2178,7 @@ function R_Factory(key) {
 					console.log(asStr);
 					var retData = {
 						asStr: asStr,
-						num: 1
+						num: 2
 					};
 					return retData;
 				};
@@ -2194,7 +2194,7 @@ function R_Factory(key) {
 					console.log(asStr);
 					var retData = {
 						asStr: asStr,
-						num: 1
+						num: 2
 					};
 					return retData;
 				};
@@ -2210,7 +2210,7 @@ function R_Factory(key) {
 					console.log(asStr);
 					var retData = {
 						asStr: asStr,
-						num: 1
+						num: 2
 					};
 					return retData;
 				};
@@ -2226,7 +2226,7 @@ function R_Factory(key) {
 					console.log(asStr);
 					var retData = {
 						asStr: asStr,
-						num: 1
+						num: 2
 					};
 					return retData;
 				};
@@ -2332,7 +2332,7 @@ function R_Factory(key) {
 					console.log(asStr);
 					var retData = {
 						asStr: asStr,
-						num: 1
+						num: 2
 					};
 					return retData;
 				};
@@ -2348,7 +2348,7 @@ function R_Factory(key) {
 					console.log(asStr);
 					var retData = {
 						asStr: asStr,
-						num: 1
+						num: 2
 					};
 					return retData;
 				};
@@ -2364,7 +2364,7 @@ function R_Factory(key) {
 					console.log(asStr);
 					var retData = {
 						asStr: asStr,
-						num: 1
+						num: 3
 					};
 					return retData;
 				};
@@ -2380,7 +2380,7 @@ function R_Factory(key) {
 					console.log(asStr);
 					var retData = {
 						asStr: asStr,
-						num: 1
+						num: 3
 					};
 					return retData;
 				};
@@ -2451,7 +2451,7 @@ function R_Factory(key) {
 					console.log(asStr);
 					var retData = {
 						asStr: asStr,
-						num: 1
+						num: 2
 					};
 					return retData;
 				};
