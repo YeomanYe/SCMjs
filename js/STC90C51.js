@@ -500,6 +500,7 @@ var STC90C51 = {
 			//分别放置低8位和高8位跳转地址
 			var addrh8 = getData16(++STC90C51.PC);
 			var addrl8 = getData16(++STC90C51.PC);
+			++STC90C51.PC;
 			//分别放置低8位和高8位
 			STC90C51.SP(STC90C51.SP() + 1);
 			STC90C51.RAM[STC90C51.SP()] = STC90C51.PC & 0X00FF;
@@ -507,6 +508,7 @@ var STC90C51 = {
 			STC90C51.RAM[STC90C51.SP()] = STC90C51.PC >> 8;
 			STC90C51.PC = addrh8 << 8 | addrl8;
 			var asStr = "LCALL " + STC90C51.PC;
+			debugger;
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -593,11 +595,12 @@ var STC90C51 = {
 		AJMP,
 		//RET 22 1
 		function() {
-			STC90C51.SP(STC90C51.SP() - 1);
 			var addrh8 = STC90C51.RAM[STC90C51.SP()];
 			STC90C51.SP(STC90C51.SP() - 1);
 			var addrl8 = STC90C51.RAM[STC90C51.SP()];
+			STC90C51.SP(STC90C51.SP() - 1);
 			STC90C51.PC = addrh8 << 8 | addrl8;
+			// debugger;
 			var asStr = "RET";
 			console.log(asStr);
 			var retData = {
@@ -1196,6 +1199,7 @@ var STC90C51 = {
 		function() {
 			var rel = getRel(++STC90C51.PC);
 			STC90C51.PC += rel + 1;
+			debugger;
 			var asStr = "SJMP " + rel;
 			console.log(asStr);
 			var retData = {
@@ -1605,7 +1609,7 @@ var STC90C51 = {
 		//CLR bit C2 2
 		function() {
 			var addr = getData16(++STC90C51.PC);
-			STC90C51.setDir(addr, 0);
+			var bit = STC90C51.setDir(addr, 0);
 			STC90C51.PC++;
 			var asStr = "CLR " + bit;
 			console.log(asStr);
@@ -2446,6 +2450,7 @@ function R_Factory(key) {
 						data = getData(addr),
 						rel = getRel(++STC90C51.PC);
 					STC90C51.RAM[addr] = --data;
+                    // debugger;
 					STC90C51.PC += (data !== 0) ? rel + 1 : 0;
 					var asStr = "DJNZ R" + offset + "," + rel;
 					console.log(asStr);

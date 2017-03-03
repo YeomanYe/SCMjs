@@ -1,0 +1,112 @@
+Q0000:             ADDC  A,R2
+                   JNB   26H.3,Q0034
+                   JNB   26H.0,Q0037
+                   JNB   26H.0,Q003A
+                   RETI
+;===========================================
+Q000B:             JNB   26H.0,Q0040
+                   ADDC  A,44H
+                   ADDC  A,@R0
+                   INC   R5
+                   INC   R2
+Q0013:             ADDC  A,R2
+                   JNB   28H.3,Q0047
+                   JNB   26H.2,Q004F
+                   JNB   26H.0,Q0054
+                   ADDC  A,R0
+                   ADDC  A,@R1
+                   ORL   A,@R0
+                   ORL   A,34H
+                   ORL   A,@R0
+Q0023:             ADDC  A,@R0
+                   ORL   A,#38H
+                   ORL   A,@R0
+                   ORL   A,#37H
+                   ADDC  A,38H
+                   ACALL Q0130
+                   ADDC  A,@R1
+                   JNB   26H.2,Q0061
+                   JNB   26H.0,Q0067
+Q0034:             RETI
+;===========================================
+Q0035:      DB 37H,0DH  ;7.
+;===========================================
+Q0037:             INC   R2
+                   ADDC  A,R2
+                   JNB   28H.3,Q006C
+                   JNB   26H.1,Q0077
+                   JNB   26H.0,Q0079
+                   ORL   A,@R0
+                   RLC   A
+                   RETI
+;===========================================
+Q0045:      DB 37H,45H  ;7E
+;===========================================
+Q0047:             RETI
+;===========================================
+Q0048:      DB 36H,37H,44H,38H,32H,44H,44H  ;67D82DD
+;===========================================
+Q004F:             ORL   A,@R0
+                   ORL   A,44H
+                   ORL   A,46H
+Q0054:             AJMP  Q0244
+                   ORL   A,@R0
+                   ORL   A,@R0
+                   ADDC  A,@R0
+                   JNB   26H.0,Q0069
+                   INC   R2
+                   ADDC  A,R2
+                   JNB   26H.1,Q0091
+Q0061:             JNB   26H.2,Q0098
+                   JNB   26H.0,Q0099
+Q0067:             RETI
+;===========================================
+Q0068:      DB 42H  ;B
+;===========================================
+Q0069:             ADDC  A,R1
+                   INC   R5
+                   INC   R2
+Q006C:             ADDC  A,R2
+                   ACALL Q0130
+                   JNB   26H.0,Q00A2
+                   RLC   A
+                   JNB   26H.0,Q00BB
+                   ADDC  A,#46H
+                   ADDC  A,42H
+                   JNB   26H.7,Q00C0
+                   JNB   26H.1,Q00B7
+                   ORL   30H,A
+                   ADDC  A,R0
+                   ORL   A,43H
+                   ADDC  A,#32H
+                   ORL   30H,A
+                   ORL   A,43H
+                   RETI
+;===========================================
+Q008C:      DB 35H,45H,30H,46H,43H  ;5E0FC
+;===========================================
+Q0091:             ACALL Q0132
+                   JNB   26H.0,Q00CE
+                   ADDC  A,@R1
+                   INC   R5
+Q0098:             INC   R2
+Q0099:             ADDC  A,R2
+                   JNB   26H.5,Q00CD
+                   JNB   26H.1,Q00D3
+                   JNB   26H.0,Q00D4
+Q00A2:             ACALL Q0138
+                   ORL   A,#42H
+                   ORL   A,@R0
+                   ADDC  A,#38H
+                   JNB   28H.5,Q00EE
+                   ADDC  A,R1
+                   ADDC  A,@R0
+                   INC   R5
+                   INC   R2
+                   ADDC  A,R2
+                   JNB   26H.0,Q00E4
+                   JNB   26H.0,Q00E7
+Q00B7:             JNB   26H.1,Q0100
+                   ORL   A,@R0
+Q00BB:             INC   R5
+                   INC   R2
