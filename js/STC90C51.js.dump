@@ -84,167 +84,167 @@ var STC90C51 = {
 	IVT: [],
 	//port0 80H 0xff
 	P0: function(val) {
-		return val ? STC90C51.SFRs[0x80] = val : STC90C51.SFRs[0X80];
+		return val !== undefined ? STC90C51.SFRs[0x80] = val : STC90C51.SFRs[0X80];
 	},
 	//81H 0x07
 	SP: function(val) {
-		return val ? STC90C51.SFRs[0x81] = val : STC90C51.SFRs[0X81];
+		return val !== undefined ? STC90C51.SFRs[0x81] = val : STC90C51.SFRs[0X81];
 	},
 	//82H 0x00
 	DPL: function(val) {
-		return val ? STC90C51.SFRs[0x82] = val : STC90C51.SFRs[0X82];
+		return val !== undefined ? STC90C51.SFRs[0x82] = val : STC90C51.SFRs[0X82];
 	},
 	//83H 0x00
 	DPH: function(val) {
-		return val ? STC90C51.SFRs[0x83] = val : STC90C51.SFRs[0X83];
+		return val !== undefined ? STC90C51.SFRs[0x83] = val : STC90C51.SFRs[0X83];
 	},
 	//87H 0x10
 	PCON: function(val) {
-		return val ? STC90C51.SFRs[0x87] = val : STC90C51.SFRs[0X87];
+		return val !== undefined ? STC90C51.SFRs[0x87] = val : STC90C51.SFRs[0X87];
 	},
 	//88H 0x00
 	TCON: function(val) {
-		return val ? STC90C51.SFRs[0x88] = val : STC90C51.SFRs[0X88];
+		return val !== undefined ? STC90C51.SFRs[0x88] = val : STC90C51.SFRs[0X88];
 	},
 	//89H 0x00
 	TMOD: function(val) {
-		return val ? STC90C51.SFRs[0x89] = val : STC90C51.SFRs[0X89];
+		return val !== undefined ? STC90C51.SFRs[0x89] = val : STC90C51.SFRs[0X89];
 	},
 	//8AH 0x00
 	TL0: function(val) {
-		return val ? STC90C51.SFRs[0x8A] = val : STC90C51.SFRs[0X8A];
+		return val !== undefined ? STC90C51.SFRs[0x8A] = val : STC90C51.SFRs[0X8A];
 	},
 	//8BH 0X00
 	TL1: function(val) {
-		return val ? STC90C51.SFRs[0x8B] = val : STC90C51.SFRs[0X8B];
+		return val !== undefined ? STC90C51.SFRs[0x8B] = val : STC90C51.SFRs[0X8B];
 	},
 	//8CH 0X00
 	TH0: function(val) {
-		return val ? STC90C51.SFRs[0x8C] = val : STC90C51.SFRs[0X8C];
+		return val !== undefined ? STC90C51.SFRs[0x8C] = val : STC90C51.SFRs[0X8C];
 	},
 	//8DH 0X00
 	TH1: function(val) {
-		return val ? STC90C51.SFRs[0x8D] = val : STC90C51.SFRs[0X8D];
+		return val !== undefined ? STC90C51.SFRs[0x8D] = val : STC90C51.SFRs[0X8D];
 	},
 	//8EH 0X00
 	AUXR: function(val) {
-		return val ? STC90C51.SFRs[0x8E] = val : STC90C51.SFRs[0X8E];
+		return val !== undefined ? STC90C51.SFRs[0x8E] = val : STC90C51.SFRs[0X8E];
 	},
 	//90H 0XFF
 	P1: function(val) {
-		return val ? STC90C51.SFRs[0x90] = val : STC90C51.SFRs[0X90];
+		return val !== undefined ? STC90C51.SFRs[0x90] = val : STC90C51.SFRs[0X90];
 	},
 	//98H 0X00
 	SCON: function(val) {
-		return val ? STC90C51.SFRs[0x98] = val : STC90C51.SFRs[0X98];
+		return val !== undefined ? STC90C51.SFRs[0x98] = val : STC90C51.SFRs[0X98];
 	},
 	//99H 0X00
 	SBUF: function(val) {
-		return val ? STC90C51.SFRs[0x99] = val : STC90C51.SFRs[0X99];
+		return val !== undefined ? STC90C51.SFRs[0x99] = val : STC90C51.SFRs[0X99];
 	},
 	//A0H 0XFF
 	P2: function(val) {
-		return val ? STC90C51.SFRs[0xA0] = val : STC90C51.SFRs[0XA0];
+		return val !== undefined ? STC90C51.SFRs[0xA0] = val : STC90C51.SFRs[0XA0];
 	},
 	//A2H 0X00
 	AUXR1: function(val) {
-		return val ? STC90C51.SFRs[0xA2] = val : STC90C51.SFRs[0XA2];
+		return val !== undefined ? STC90C51.SFRs[0xA2] = val : STC90C51.SFRs[0XA2];
 	},
 	//A8H 0X00
 	IE: function(val) {
-		return val ? STC90C51.SFRs[0xA8] = val : STC90C51.SFRs[0XA8];
+		return val !== undefined ? STC90C51.SFRs[0xA8] = val : STC90C51.SFRs[0XA8];
 	},
 	//A9H 0X00
 	SADDR: function(val) {
-		return val ? STC90C51.SFRs[0xA9] = val : STC90C51.SFRs[0XA9];
+		return val !== undefined ? STC90C51.SFRs[0xA9] = val : STC90C51.SFRs[0XA9];
 	},
 	//B0 0XFF
 	P3: function(val) {
-		return val ? STC90C51.SFRs[0xB0] = val : STC90C51.SFRs[0XB0];
+		return val !== undefined ? STC90C51.SFRs[0xB0] = val : STC90C51.SFRs[0XB0];
 	},
 	//B7 0X00
 	IPH: function(val) {
-		return val ? STC90C51.SFRs[0xB7] = val : STC90C51.SFRs[0XB7];
+		return val !== undefined ? STC90C51.SFRs[0xB7] = val : STC90C51.SFRs[0XB7];
 	},
 	//B8 0X00
 	IP: function(val) {
-		return val ? STC90C51.SFRs[0xB8] = val : STC90C51.SFRs[0XB8];
+		return val !== undefined ? STC90C51.SFRs[0xB8] = val : STC90C51.SFRs[0XB8];
 	},
 	//B9 0X00
 	SADEN: function(val) {
-		return val ? STC90C51.SFRs[0xB9] = val : STC90C51.SFRs[0XB9];
+		return val !== undefined ? STC90C51.SFRs[0xB9] = val : STC90C51.SFRs[0XB9];
 	},
 	//C0 0X00
 	XICON: function(val) {
-		return val ? STC90C51.SFRs[0xC0] = val : STC90C51.SFRs[0XC0];
+		return val !== undefined ? STC90C51.SFRs[0xC0] = val : STC90C51.SFRs[0XC0];
 	},
 	//C8 0X00
 	T2CON: function(val) {
-		return val ? STC90C51.SFRs[0xC8] = val : STC90C51.SFRs[0XC8];
+		return val !== undefined ? STC90C51.SFRs[0xC8] = val : STC90C51.SFRs[0XC8];
 	},
 	//C9 0X00
 	T2MOD: function(val) {
-		return val ? STC90C51.SFRs[0xC9] = val : STC90C51.SFRs[0XC9];
+		return val !== undefined ? STC90C51.SFRs[0xC9] = val : STC90C51.SFRs[0XC9];
 	},
 	//CA 0X00
 	RCAP2L: function(val) {
-		return val ? STC90C51.SFRs[0xCA] = val : STC90C51.SFRs[0XCA];
+		return val !== undefined ? STC90C51.SFRs[0xCA] = val : STC90C51.SFRs[0XCA];
 	},
 	//CB 0X00
 	RCAP2H: function(val) {
-		return val ? STC90C51.SFRs[0xCB] = val : STC90C51.SFRs[0XCB];
+		return val !== undefined ? STC90C51.SFRs[0xCB] = val : STC90C51.SFRs[0XCB];
 	},
 	//CC 0X00
 	TL2: function(val) {
-		return val ? STC90C51.SFRs[0xCC] = val : STC90C51.SFRs[0XCC];
+		return val !== undefined ? STC90C51.SFRs[0xCC] = val : STC90C51.SFRs[0XCC];
 	},
 	//CD 0X00
 	TH2: function(val) {
-		return val ? STC90C51.SFRs[0xCD] = val : STC90C51.SFRs[0XCD];
+		return val !== undefined ? STC90C51.SFRs[0xCD] = val : STC90C51.SFRs[0XCD];
 	},
 	//D0 0X00
 	PSW: function(val) {
-		return val ? STC90C51.SFRs[0xD0] = val : STC90C51.SFRs[0XD0];
+		return val !== undefined ? STC90C51.SFRs[0xD0] = val : STC90C51.SFRs[0XD0];
 	},
 	//E0 0X00
 	ACC: function(val) {
-		return val ? STC90C51.SFRs[0xE0] = val : STC90C51.SFRs[0XE0];
+		return val !== undefined ? STC90C51.SFRs[0xE0] = val : STC90C51.SFRs[0XE0];
 	},
 	//E1 0X00
 	WDT_CONTR: function(val) {
-		return val ? STC90C51.SFRs[0xE1] = val : STC90C51.SFRs[0XE1];
+		return val !== undefined ? STC90C51.SFRs[0xE1] = val : STC90C51.SFRs[0XE1];
 	},
 	//E2 0XFF
 	ISP_DATA: function(val) {
-		return val ? STC90C51.SFRs[0xE2] = val : STC90C51.SFRs[0XE2];
+		return val !== undefined ? STC90C51.SFRs[0xE2] = val : STC90C51.SFRs[0XE2];
 	},
 	//E3 0X00
 	ISP_ADDRH: function(val) {
-		return val ? STC90C51.SFRs[0xE3] = val : STC90C51.SFRs[0XE3];
+		return val !== undefined ? STC90C51.SFRs[0xE3] = val : STC90C51.SFRs[0XE3];
 	},
 	//E4 0X00
 	ISP_ADDRL: function(val) {
-		return val ? STC90C51.SFRs[0xE4] = val : STC90C51.SFRs[0XE4];
+		return val !== undefined ? STC90C51.SFRs[0xE4] = val : STC90C51.SFRs[0XE4];
 	},
 	//E5 0X00
 	ISP_CMD: function(val) {
-		return val ? STC90C51.SFRs[0xE5] = val : STC90C51.SFRs[0XE5];
+		return val !== undefined ? STC90C51.SFRs[0xE5] = val : STC90C51.SFRs[0XE5];
 	},
 	//E6 0X00
 	ISP_TRIG: function(val) {
-		return val ? STC90C51.SFRs[0xE6] = val : STC90C51.SFRs[0XE6];
+		return val !== undefined ? STC90C51.SFRs[0xE6] = val : STC90C51.SFRs[0XE6];
 	},
 	//E7 0X00
 	ISP_CONTR: function(val) {
-		return val ? STC90C51.SFRs[0xE7] = val : STC90C51.SFRs[0XE7];
+		return val !== undefined ? STC90C51.SFRs[0xE7] = val : STC90C51.SFRs[0XE7];
 	},
 	//E8 0X0F
 	P4: function(val) {
-		return val ? STC90C51.SFRs[0xE8] = val : STC90C51.SFRs[0XE8];
+		return val !== undefined ? STC90C51.SFRs[0xE8] = val : STC90C51.SFRs[0XE8];
 	},
 	//F0 0X00
 	B: function(val) {
-		return val ? STC90C51.SFRs[0xF0] = val : STC90C51.SFRs[0XF0];
+		return val !== undefined ? STC90C51.SFRs[0xF0] = val : STC90C51.SFRs[0XF0];
 	},
 	//下载指令到PFM中
 	loadCommandToPFM: function(txt) {
@@ -2450,7 +2450,7 @@ function R_Factory(key) {
 						data = getData(addr),
 						rel = getRel(++STC90C51.PC);
 					STC90C51.RAM[addr] = --data;
-                    // debugger;
+					// debugger;
 					STC90C51.PC += (data !== 0) ? rel + 1 : 0;
 					var asStr = "DJNZ R" + offset + "," + rel;
 					console.log(asStr);

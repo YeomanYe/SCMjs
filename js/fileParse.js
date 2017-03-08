@@ -65,4 +65,6 @@ function generateAssembly() {
 			break;
 		}
 	}
+	//反编译完成后进行单片机的复位工作
+	STC90C51.reset();
 }
