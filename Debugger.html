@@ -16,12 +16,12 @@
     }
     
     #right {
-        width: 35%;
+        width: 20%;
         float: left;
     }
     
     #center {
-        width: 30%;
+        width: 40%;
         float: left;
     }
     
@@ -31,19 +31,27 @@
     
     #code li {
         width: 50%;
+        position: relative;
     }
     
     .cur {
         background: #fcf34e;
     }
-    
-    #SFRsName {
-        width: 20%;
-        float: left;
+    .breakpoint::before{
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        position: absolute;
+        top:5px;
+        left:-10px;
+        background-color: red;
     }
-    
-    #SFRsValue {
-        width: 70%;
+    #SFRsName,#SFRsValue,#SFRsValueDec,#SFRsValueHex {
+        display: inline-block;
+    }
+    #center li:first-child{
+        font-weight: bold;
     }
     </style>
 </head>
@@ -61,20 +69,34 @@
         <div id="center">
             <fieldset>
                 <legend>SFRs</legend>
+                <!-- 特殊功能寄存器 -->
                 <ul id="SFRsName">
+                    <li>名称</li>
                 </ul>
+                <!-- 值的二进制表示 -->
                 <ul id="SFRsValue">
+                    <li>二进制</li>
+                </ul>
+                <!-- 值的十进制表示 -->
+                <ul id="SFRsValueDec">
+                    <li>十进制</li>
+                </ul>
+                <!-- 值的十六进制表示 -->
+                <ul id="SFRsValueHex">
+                    <li>十六进制</li>
                 </ul>
             </fieldset>
             <fieldset>
                 <legend>control</legend>
                 <input type="file" name="file" id="file" style="display: none" />
-                <input type="button" id="upload" value="Upload" onclick="document.getElementById('file').click();">
-                <input type="text" id="breakpoint" placeholder="Break Point">
-                <input type="button" id="addBreak" value="AddBreak">
-                <input type="button" id="step" value="Step">
-                <input type="button" id="pause" value="Pause">
-                <input type="button" id="run" value="Run">
+                <input type="button" id="upload" value="Upload" onclick="document.getElementById('file').click();" title="加载hex文件">
+                <input type="text" id="breakpoint" placeholder="breakpoint line">
+                <input type="button" id="addBreak" value="AddBreak" title="添加断点">
+                <input type="button" id="step" value="Step" title="单步">
+                <input type="button" id="pause" value="Pause" title="暂停">
+                <input type="button" id="run" value="Run" title="运行">
+                <input type="button" id="clearAll" value="clearAll" title="清除全部断点">
+                <!-- <input type="button" id="run" value=""> -->
             </fieldset>
         </div>
         <div id="right">

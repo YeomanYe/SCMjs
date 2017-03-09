@@ -248,6 +248,8 @@ var STC90C51 = {
 	},
 	//下载指令到PFM中
 	loadCommandToPFM: function(txt) {
+		//重置下PFM
+		this.PFM = [];
 		txt = replaceAll(txt, "\r\n", "");
 		var tempArr = txt.split(":");
 		tempArr.shift();
