@@ -491,7 +491,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 3
+				num: 2
 			};
 			return retData;
 		},
@@ -589,7 +589,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 3
+				num: 2
 			};
 			return retData;
 		},
@@ -833,7 +833,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 2
+				num: 1
 			};
 			return retData;
 		},
@@ -927,7 +927,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 2
+				num: 1
 			};
 			return retData;
 		},
@@ -1115,7 +1115,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 2
+				num: 1
 			};
 			return retData;
 		},
@@ -1553,7 +1553,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 3
+				num: 2
 			};
 			return retData;
 		},
@@ -1568,7 +1568,7 @@ var STC90C51 = {
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 3
+				num: 2
 			};
 			return retData;
 		},
@@ -1753,14 +1753,12 @@ var STC90C51 = {
 				data = STC90C51.getDir(addr),
 				rel = getRel(++STC90C51.PC);
 			STC90C51.setDir(addr, --data);
-			if (data) {
-				STC90C51.PC += rel + 1;
-			}
+			STC90C51.PC += data ? rel + 1 : 1;
 			var asStr = "DJNZ " + addr + "," + rel;
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
-				num: 3
+				num: 2
 			};
 			return retData;
 		},
@@ -2370,7 +2368,7 @@ function R_Factory(key) {
 					console.log(asStr);
 					var retData = {
 						asStr: asStr,
-						num: 3
+						num: 2
 					};
 					return retData;
 				};
@@ -2386,7 +2384,7 @@ function R_Factory(key) {
 					console.log(asStr);
 					var retData = {
 						asStr: asStr,
-						num: 3
+						num: 2
 					};
 					return retData;
 				};
@@ -2453,12 +2451,12 @@ function R_Factory(key) {
 						rel = getRel(++STC90C51.PC);
 					STC90C51.RAM[addr] = --data;
 					// debugger;
-					STC90C51.PC += (data !== 0) ? rel + 1 : 0;
+					STC90C51.PC += (data !== 0) ? rel + 1 : 1;
 					var asStr = "DJNZ R" + offset + "," + rel;
 					console.log(asStr);
 					var retData = {
 						asStr: asStr,
-						num: 2
+						num: 1
 					};
 					return retData;
 				};

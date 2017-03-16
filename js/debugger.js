@@ -81,7 +81,7 @@ function run() {
 //判断是否到断点
 function isInBreak() {
 	for (var i = 0, len = breakPointArr.length; i < len; i++) {
-		if (macInsSeqTab[parseInt(breakPointArr[i])] == STC90C51.PC) {
+		if (macInsSeqTab[parseInt(breakPointArr[i] - 1)] == STC90C51.PC) {
 			STC90C51.isPause = true;
 		}
 	}
