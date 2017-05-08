@@ -1753,7 +1753,7 @@ var STC90C51 = {
 				data = STC90C51.getDir(addr),
 				rel = getRel(++STC90C51.PC);
 			STC90C51.setDir(addr, --data);
-			STC90C51.PC += data ? rel + 1 : 1;
+			STC90C51.PC += data ? (rel + 1) : 1;
 			var asStr = "DJNZ " + addr + "," + rel;
 			console.log(asStr);
 			var retData = {

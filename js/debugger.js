@@ -2,11 +2,18 @@
 var instrStack = [];
 //显示PFM数据到id为pfm的段落
 function showPFM() {
-	var pfmArr = STC90C51.PFM,
-		content = "";
-	content = pfmArr.join(" ");
+	var pfmArr = STC90C51.PFM;
 	var p = document.getElementById("pfm");
-	p.innerText = content;
+	//清空标签P中的内容
+	p.innerHTML = "";
+	for(var i=0;i<pfmArr.length;i++){
+		var span = document.createElement("span");
+		span.innerHTML=pfmArr[i];
+		p.appendChild(span);
+	}
+	//根据PC指针来高亮代码段
+	var pc = STC90C51.PC;
+	p.childNodes[pc].setAttribute("class","curpfm");
 }
 
 //运行下一条指令
@@ -50,12 +57,20 @@ function execute(arg) {
 	}
 	highLightCurAss();
 	updateShowSFRs();
+	showPFM();
 }
 
 //高亮断点汇编语句
 function highLightBreakpoint() {
-	for (var i = 0, len = breakPointArr.length; i < len; i++) {
-		var index = breakPointArr[i] - 1,
+	//去除所有汇编指令元素的断点样式
+	var liElems = document.getElementById("code").children;
+	for (var i=0,len=liElems.length;i<len;i++){
+		if(hasClass(liElems[i],"breakpoint")){
+			removeClass(liElems[i],"breakpoint");
+		}
+	}
+	for (i = 0, len = breakPointArr.length; i < len; i++) {
+		var index = breakPointArr[i]-1,
 			assElem = document.getElementById("code").childNodes[index];
 		if (!hasClass(assElem, "breakpoint"))
 			addClass(assElem, "breakpoint");
@@ -82,9 +97,10 @@ function run() {
 function isInBreak() {
 	for (var i = 0, len = breakPointArr.length; i < len; i++) {
 		if (macInsSeqTab[parseInt(breakPointArr[i] - 1)] == STC90C51.PC) {
-			STC90C51.isPause = true;
+			return true;
 		}
 	}
+	return false;
 }
 
 //需要更新显示的寄存器值

@@ -37,21 +37,37 @@
     .cur {
         background: #fcf34e;
     }
-    .breakpoint::before{
+    
+    .breakpoint::before {
         content: "";
         width: 10px;
         height: 10px;
         border-radius: 5px;
         position: absolute;
-        top:5px;
-        left:-10px;
+        top: 5px;
+        left: -10px;
         background-color: red;
     }
-    #SFRsName,#SFRsValue,#SFRsValueDec,#SFRsValueHex {
+    
+    #SFRsName,
+    #SFRsValue,
+    #SFRsValueDec,
+    #SFRsValueHex {
         display: inline-block;
     }
-    #center li:first-child{
+    
+    #center li:first-child {
         font-weight: bold;
+    }
+    #pfm{
+        overflow-wrap: break-word;
+        width: 320px;
+    }
+    #pfm span{
+        margin: 10px;
+    }
+    .curpfm{
+        background-color: red;
     }
     </style>
 </head>
@@ -62,7 +78,6 @@
             <fieldset>
                 <legend>Assembly</legend>
                 <ul id="code">
-                    
                 </ul>
             </fieldset>
         </div>
@@ -90,8 +105,8 @@
                 <legend>control</legend>
                 <input type="file" name="file" id="file" style="display: none" />
                 <input type="button" id="upload" value="Upload" onclick="document.getElementById('file').click();" title="加载hex文件">
-                <input type="text" id="breakpoint" placeholder="breakpoint line">
-                <input type="button" id="addBreak" value="AddBreak" title="添加断点">
+                <!-- <input type="text" id="breakpoint" placeholder="breakpoint line">
+                <input type="button" id="addBreak" value="AddBreak" title="添加断点"> -->
                 <input type="button" id="step" value="Step" title="单步">
                 <input type="button" id="pause" value="Pause" title="暂停">
                 <input type="button" id="run" value="Run" title="运行">
