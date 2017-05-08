@@ -108,6 +108,10 @@ function setBreakpoint(event){
 		//添加到数组中
 		breakPointArr.push(index+1);
 	}
+	//查询禁用断点列表中是否有该断点如果有则删除
+	if(-1 != (num = disabledBreakpointArr.indexOf(index+1))){
+		disabledBreakpointArr.splice(num,1);
+	}
 	//高亮对应的代码块
 	highLightBreakpoint();
 }

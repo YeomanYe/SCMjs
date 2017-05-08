@@ -30,8 +30,11 @@ window.onload = function() {
 	var stepBtn = document.getElementById("step"),
 		runBtn = document.getElementById("run"),
 		pauseBtn = document.getElementById("pause"),
-		breakpoint = document.getElementById("breakpoint"),
-		addBreakBtn = document.getElementById("addBreak");
+		// breakpoint = document.getElementById("breakpoint"),
+		// addBreakBtn = document.getElementById("addBreak"),
+		clearAll = document.getElementById("clearAll"),
+		disabledAll = document.getElementById("disabledAll"),
+		enabledAll = document.getElementById("enabledAll");
 	stepBtn.onclick = function() {
 		execute("step");
 	};
@@ -39,15 +42,33 @@ window.onload = function() {
 	pauseBtn.onclick = function() {
 		STC90C51.isPause = true;
 	};
-	addBreak.onclick = function() {
+	clearAll.onclick = function(){
+		breakPointArr = [];
+		disabledBreakpointArr = [];
+		highLightBreakpoint();
+	};
+	disabledAll.onclick = function(){
+		disabledBreakpointArr = breakPointArr.concat(disabledBreakpointArr);
+		breakPointArr = [];
+		highLightBreakpoint();
+	};
+	enabledAll.onclick = function(){
+		breakPointArr = disabledBreakpointArr.concat(breakPointArr);
+		disabledBreakpointArr = [];
+		highLightBreakpoint();
+	};
+	/*addBreak.onclick = function() {
 		breakPointArr.push(breakpoint.value);
 		//高亮对应的代码块
 		highLightBreakpoint();
 		breakpoint.value = "";
-	};
+	};*/
 };
 
-var breakPointArr = [];
+//断点列表数组
+var breakPointArr = [],
+//禁用的断点列表数组
+	disabledBreakpointArr = [];
 
 function execute(arg) {
 	switch (arg) {
@@ -55,25 +76,38 @@ function execute(arg) {
 			step();
 			break;
 	}
+	//设置汇编指令高亮
 	highLightCurAss();
+	//更新寄存器的展示
 	updateShowSFRs();
+	//更行程序存储器的显示
 	showPFM();
 }
 
 //高亮断点汇编语句
 function highLightBreakpoint() {
 	//去除所有汇编指令元素的断点样式
+	var index,assElem;
 	var liElems = document.getElementById("code").children;
 	for (var i=0,len=liElems.length;i<len;i++){
 		if(hasClass(liElems[i],"breakpoint")){
 			removeClass(liElems[i],"breakpoint");
 		}
+		if(hasClass(liElems[i],"disabledBreakpoint")){
+			removeClass(liElems[i],"disabledBreakpoint");
+		}
 	}
 	for (i = 0, len = breakPointArr.length; i < len; i++) {
-		var index = breakPointArr[i]-1,
-			assElem = document.getElementById("code").childNodes[index];
+		 index = breakPointArr[i]-1;
+		 assElem = document.getElementById("code").childNodes[index];
 		if (!hasClass(assElem, "breakpoint"))
 			addClass(assElem, "breakpoint");
+	}
+	for (i = 0, len = disabledBreakpointArr.length; i < len; i++) {
+		 index = disabledBreakpointArr[i]-1;
+		  assElem = document.getElementById("code").childNodes[index];
+		if (!hasClass(assElem, "disabledBreakpoint"))
+			addClass(assElem, "disabledBreakpoint");
 	}
 }
 

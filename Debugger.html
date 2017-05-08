@@ -48,6 +48,16 @@
         left: -10px;
         background-color: red;
     }
+    .disabledBreakpoint::before{
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        position: absolute;
+        top: 5px;
+        left: -10px;
+        background-color: pink;
+    }
     
     #SFRsName,
     #SFRsValue,
@@ -111,6 +121,8 @@
                 <input type="button" id="pause" value="Pause" title="暂停">
                 <input type="button" id="run" value="Run" title="运行">
                 <input type="button" id="clearAll" value="clearAll" title="清除全部断点">
+                <input type="button" id="disabledAll" value="disabledAll" title="禁用全部断点">
+                <input type="button" id="enabledAll" value="enabledAll" title="启用全部断点">
                 <!-- <input type="button" id="run" value=""> -->
             </fieldset>
         </div>
