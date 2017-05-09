@@ -3,9 +3,7 @@ window.onload = function() {
     ctx = canvas.getContext("2d");
     canWidth = canvas.offsetWidth;
     canHeight = canvas.offsetHeight;
-    drawBack();
-    drawSCM();
-    drawDigit(0xff,0x66);
+    draw();
 };
 //canvas绘制环境
 var ctx;
@@ -19,6 +17,13 @@ function drawBack() {
     ctx.fillRect(0, 0, canWidth, canHeight);
     ctx.closePath();
 }
+
+function draw(){
+    drawBack();
+    drawSCM();
+    drawDigit(0xff,0x00);
+}
+
 
 //绘制单片机
 function drawSCM() {
@@ -133,13 +138,4 @@ function drawDigit(seg, bit) {
     };
 
     digDisplay(seg, bit);
-}
-/**
- * 数码管显示
- * @param  {int} seg 段选
- * @param  {int} bit 位选
- * @return {void}     无
- */
-function digDisplay(seg, bit) {
-
 }
