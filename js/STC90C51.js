@@ -292,6 +292,8 @@ var STC90C51 = {
 				break;
 			}
 		}
+		//校验成功后将数据保存到localStorage中以便下次读取
+		localStorage.setItem("hex",STC90C51.PFM);
 	},
 	//校验检测数据是否有误
 	isRecord: function(data, validation) {

@@ -33,8 +33,8 @@ window.onload = function() {
 		// breakpoint = document.getElementById("breakpoint"),
 		// addBreakBtn = document.getElementById("addBreak"),
 		clearAll = document.getElementById("clearAll"),
-		disabledAll = document.getElementById("disabledAll"),
-		enabledAll = document.getElementById("enabledAll");
+		disableAll = document.getElementById("disableAll"),
+		enableAll = document.getElementById("enableAll");
 	stepBtn.onclick = function() {
 		execute("step");
 	};
@@ -47,16 +47,27 @@ window.onload = function() {
 		disabledBreakpointArr = [];
 		highLightBreakpoint();
 	};
-	disabledAll.onclick = function(){
+	disableAll.onclick = function(){
 		disabledBreakpointArr = breakPointArr.concat(disabledBreakpointArr);
 		breakPointArr = [];
 		highLightBreakpoint();
 	};
-	enabledAll.onclick = function(){
+	enableAll.onclick = function(){
 		breakPointArr = disabledBreakpointArr.concat(breakPointArr);
 		disabledBreakpointArr = [];
 		highLightBreakpoint();
 	};
+	//如果本地存储中已经存储了数据则直接使用该数据进行初始化
+	var PFM = localStorage.getItem("hex");
+	if(PFM){
+		STC90C51.PFM = PFM.split(",");
+		//准备完成标志位
+        isReady = true;
+        main();
+        console.log(STC90C51.PFM);
+        generateAssembly();
+        highLightCurAss();
+	}
 	/*addBreak.onclick = function() {
 		breakPointArr.push(breakpoint.value);
 		//高亮对应的代码块
@@ -99,13 +110,13 @@ function highLightBreakpoint() {
 	}
 	for (i = 0, len = breakPointArr.length; i < len; i++) {
 		 index = breakPointArr[i]-1;
-		 assElem = document.getElementById("code").childNodes[index];
+		 assElem = document.getElementById("code").children[index];
 		if (!hasClass(assElem, "breakpoint"))
 			addClass(assElem, "breakpoint");
 	}
 	for (i = 0, len = disabledBreakpointArr.length; i < len; i++) {
 		 index = disabledBreakpointArr[i]-1;
-		  assElem = document.getElementById("code").childNodes[index];
+		  assElem = document.getElementById("code").children[index];
 		if (!hasClass(assElem, "disabledBreakpoint"))
 			addClass(assElem, "disabledBreakpoint");
 	}

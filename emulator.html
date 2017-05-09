@@ -3,12 +3,69 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Emulator</title>
+	<link rel="stylesheet" href="css/emulator.css">
 </head>
 <body>
-	<input type="file" name="file" id="file"/>
+	<div id="wrap">
+        <canvas width="900" height="600" id="canvas"></canvas>
+        <div id="control">
+        <fieldset>
+        	<legend>端口设置</legend>
+        	<div class="right">
+        		<div>P0.0-<input type="text"></div>
+        		<div>P0.1-<input type="text"></div>
+        		<div>P0.2-<input type="text"></div>
+        		<div>P0.3-<input type="text"></div>
+        		<div>P0.4-<input type="text"></div>
+        		<div>P0.5-<input type="text"></div>
+        		<div>P0.6-<input type="text"></div>
+        		<div>P0.7-<input type="text"></div>
+        	</div>
+        	<div class="right">
+        		<div>P1.0-<input type="text"></div>
+        		<div>P1.1-<input type="text"></div>
+        		<div>P1.2-<input type="text"></div>
+        		<div>P1.3-<input type="text"></div>
+        		<div>P1.4-<input type="text"></div>
+        		<div>P1.5-<input type="text"></div>
+        		<div>P1.6-<input type="text"></div>
+        		<div>P1.7-<input type="text"></div>
+        	</div>
+        	<div class="right">
+        		<div>P2.0-<input type="text"></div>
+        		<div>P2.1-<input type="text"></div>
+        		<div>P2.2-<input type="text"></div>
+        		<div>P2.3-<input type="text"></div>
+        		<div>P2.4-<input type="text"></div>
+        		<div>P2.5-<input type="text"></div>
+        		<div>P2.6-<input type="text"></div>
+        		<div>P2.7-<input type="text"></div>
+        	</div>
+        	<div class="right">
+        		<div>P3.0-<input type="text"></div>
+        		<div>P3.1-<input type="text"></div>
+        		<div>P3.2-<input type="text"></div>
+        		<div>P3.3-<input type="text"></div>
+        		<div>P3.4-<input type="text"></div>
+        		<div>P3.5-<input type="text"></div>
+        		<div>P3.6-<input type="text"></div>
+        		<div>P3.7-<input type="text"></div>
+        	</div>
+        </fieldset>
+        <fieldset>
+        	<legend>控制按钮</legend>
+        	<input type="file" name="file" id="file"/>
+        	<input type="button" id="step" value="Step" title="单步">
+            <input type="button" id="pause" value="Pause" title="暂停">
+            <input type="button" id="run" value="Run" title="运行">
+            <input type="button" id="stop" value="Stop" title="停止">
+        </fieldset>
+        </div>
+    </div>
 	<script src="js/utils.js" type="text/javascript"></script>
 	<script src="js/STC90C51.js" type="text/javascript"></script>
 	<script src="js/fileParse.js" type="text/javascript"></script>
+	<script src="js/UI.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		//单片机执行程序的主函数
 		//准备就绪位
@@ -23,9 +80,6 @@
 				ins = parseInt(STC90C51.PFM[++STC90C51.PC],16);
 			}
 		}
-		window.onload = function(){
-			if(isReady)main();
-		};
 	</script>
 </body>
 </html>

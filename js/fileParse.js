@@ -120,7 +120,7 @@ function setBreakpoint(event){
 function highLightCurAss() {
     var i = macInsSeqTab.indexOf(STC90C51.PC),
         allAssElems = document.querySelectorAll("#code .cur"),
-        curAssElem = document.getElementById("code").childNodes[i];
+        curAssElem = document.getElementById("code").children[i];
     for (var j = 0, len = allAssElems.length; j < len; j++) {
         if (allAssElems[j])
             removeClass(allAssElems[j], "cur");

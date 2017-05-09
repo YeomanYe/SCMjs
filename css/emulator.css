@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#wrap {
+    width: 1300px;
+    height: 600px;
+    margin: 0 auto;
+}
+.left{
+    float:left;
+}
+.right{
+    float:right;
+    margin: 3px;
+}
+#canvas {
+    border: 1px solid black;
+}
+#control input[type="text"]{
+    width: 35px;
+}
+#control{
+    overflow:hidden;
+    float:right;
+}
+#control input[type="file"]{
+    clear:both;
+    display: block;
+}
+fieldset div{
+    margin: 5px;
+}
+fieldset{
+    margin: 10px 0;
+}
+fieldset>input{
+    margin: 10px;
+}
+input[type="button"]{
+    width: 60px;
+    height: 30px;
+}
