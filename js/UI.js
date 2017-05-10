@@ -1,14 +1,15 @@
-window.onload = function() {
-    var canvas = document.getElementById("canvas");
-    ctx = canvas.getContext("2d");
-    canWidth = canvas.offsetWidth;
-    canHeight = canvas.offsetHeight;
-    draw();
-};
 //canvas绘制环境
 var ctx;
 //canvas宽高
 var canWidth, canHeight;
+
+//canvas初始化
+function canvasInit(){
+    var canvas = document.getElementById("canvas");
+    ctx = canvas.getContext("2d");
+    canWidth = canvas.offsetWidth;
+    canHeight = canvas.offsetHeight;
+}
 
 //绘制背景
 function drawBack() {
