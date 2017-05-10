@@ -6,14 +6,23 @@ function showPFM() {
 	var p = document.getElementById("pfm");
 	//清空标签P中的内容
 	p.innerHTML = "";
+	//统计空白单元数
+	var count = 0;
 	for(var i=0;i<pfmArr.length;i++){
 		var span = document.createElement("span");
-		span.innerHTML=pfmArr[i];
-		p.appendChild(span);
+		if(pfmArr[i]){
+			span.innerHTML=pfmArr[i];
+			p.appendChild(span);
+		}else{
+			count++;
+		}
 	}
 	//根据PC指针来高亮代码段
 	var pc = STC90C51.PC;
-	p.childNodes[pc].setAttribute("class","curpfm");
+	if(pc>count){
+		pc -= count;
+	}
+	p.children[pc].setAttribute("class","curpfm");
 }
 
 //运行下一条指令
@@ -30,8 +39,6 @@ window.onload = function() {
 	var stepBtn = document.getElementById("step"),
 		runBtn = document.getElementById("run"),
 		pauseBtn = document.getElementById("pause"),
-		// breakpoint = document.getElementById("breakpoint"),
-		// addBreakBtn = document.getElementById("addBreak"),
 		clearAll = document.getElementById("clearAll"),
 		disableAll = document.getElementById("disableAll"),
 		enableAll = document.getElementById("enableAll");
@@ -135,7 +142,7 @@ function run() {
 			STC90C51.isPause = true;
 			clearInterval(intervalFlag);
 		}
-	}, 10);
+	}, 1);
 }
 
 //判断是否到断点
@@ -176,10 +183,9 @@ function showSFRs(sfrName, sfrValue) {
 		hexValueList = document.getElementById("SFRsValueHex");
 	var value = "";
 	var temp = sfrValue;
-	for (var i = 0, len = 8; i < len; i++) {
-		var bit = temp & 0x01;
-		temp >>= 1;
-		value += bit + " ";
+	for (var i = 0; i < 8; i++) {
+		var bit = temp & (0x01 << (7 - i));
+		value += bit ? " 1" : " 0" ;
 	}
 	var nameLi = document.createElement("li"),
 		valueLi = document.createElement("li"),

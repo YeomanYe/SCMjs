@@ -51,6 +51,8 @@ function generateAssembly() {
     var strPFM = STC90C51.PFM.join(" ").replace(/(^\s*)|(\s*$)/g, "").replace(/(\W\s{1,}\W)/g, " ");
     //保存前一个PC指针
     var prevPC;
+    //连续相同的次数
+    var loop;
     while (1) {
         if (PFM2[STC90C51.PC] != STC90C51.PFM[STC90C51.PC]) {
             //放入PC到指令顺序表
@@ -74,10 +76,12 @@ function generateAssembly() {
             liElem.ondblclick = setBreakpoint;
             liElem.innerHTML = macInsSeqTab.length + ". " + retData.asStr;
             codeElem.appendChild(liElem);
+            loop=0;
         } else {
             /*tmpPC = prevPC;
             prevPC = STC90C51.PC;
             STC90C51.PC = tmpPC + 1;*/
+            loop++;
             STC90C51.PC = prevPC++;
         }
         strPFM2 = PFM2.join(" ").replace(/(^\s*)|(\s*$)/g, "").replace(/(\W\s{1,}\W)/g, " ");
@@ -85,6 +89,8 @@ function generateAssembly() {
             console.log("PFM2: " + PFM2.join(" ").replace(/(^\s*)|(\s*$)/g, "").replace(/(\W\s{1,}\W)/g, " "));
             break;
         }
+        //连续循环10次找不到不同的指令则退出
+        if(loop>=10) break;
     }
     //反编译完成后进行单片机的复位工作
     STC90C51.reset();
