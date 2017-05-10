@@ -365,6 +365,28 @@ var STC90C51 = {
 		}
 		return data;
 	},
+	/*
+	P0:80~87
+	P1:90~97
+	P2:A0~A7
+	P3:B0~B7
+	 */
+	//设置特殊功能寄存器位
+	setSFRsBit:function(addr,bit){
+		var abs = parseInt(addr / 8 * 8),
+			rel = addr % 8;
+		if (bit) {
+			STC90C51.SFRs[abs] = STC90C51.SFRs[abs] | (0x01 << rel);
+		} else {
+			STC90C51.SFRs[abs] = STC90C51.SFRs[abs] & (~(0x01 << rel)) & 0xFF;
+		}
+	},
+	//获取特殊功能寄存器位
+	getSFRsBit:function(addr){
+		var abs = parseInt(addr / 8 * 8 ),
+			rel = addr % 8;
+		return STC90C51.SFRs[abs] >> rel & 0x01;
+	},
 	//获取位
 	getBit: function(addr) {
 		var abs = parseInt(addr / 8),
@@ -396,6 +418,10 @@ var STC90C51 = {
 		//寄存器复位
 		for(var i=0,len=STC90C51.SFRs.length;i<len;i++){
 			STC90C51.SFRs[i]=0;
+		}
+		//RAM复位
+		for(i=0,len=STC90C51.RAM.length;i<len;i++){
+			STC90C51.RAM[i]=0;
 		}
 		STC90C51.P0(0XFF);
 		STC90C51.SP(0X07);
@@ -482,7 +508,7 @@ var STC90C51 = {
 		},
 		//INC A 04 1
 		function() {
-			STC90C51.ACC(STC90C51.ACC() + 1);
+			STC90C51.ACC((STC90C51.ACC() + 1)&0xFF);
 			STC90C51.PC++;
 			var asStr = "INC A";
 			console.log(asStr);
@@ -496,7 +522,7 @@ var STC90C51 = {
 		function() {
 			var addr = getData16(++STC90C51.PC),
 				data = STC90C51.getDir(addr);
-			STC90C51.setDir(data);
+			STC90C51.setDir(++data&0xFF);
 			STC90C51.PC++;
 			var asStr = "INC " + addr;
 			console.log(asStr);
@@ -1711,7 +1737,7 @@ var STC90C51 = {
 		//CLR bit C2 2
 		function() {
 			var addr = getData16(++STC90C51.PC);
-			var bit = STC90C51.setDir(addr, 0);
+			var bit = STC90C51.setBit(addr, 0);
 			STC90C51.PC++;
 			var asStr = "CLR " + bit;
 			console.log(asStr);
@@ -2029,8 +2055,8 @@ function AJMP() {
 		addrl = STC90C51.PFM[++STC90C51.PC];
 	//设置跳转地址
 	var addr11 = (addrh << 3) | addrl;
-	STC90C51.PC = STC90C51.PC & 0XF800 | addr11;
-	var asStr = "AJMP " + STC90C51.addr11;
+	STC90C51.PC = STC90C51.PC & 0XFC00 | addr11;
+	var asStr = "AJMP " + addr11;
 	console.log(asStr);
 	var retData = {
 		asStr: asStr,
@@ -2376,8 +2402,9 @@ function R_Factory(key) {
 		case "Ri_INC":
 			return function(offset) {
 				return function() {
-					var addr = getData(getAddr(offset));
-					STC90C51.RAM[addr]++;
+					var addr = getData(getAddr(offset)),
+						data = STC90C51.RAM[addr]++;
+					STC90C51.RAM[addr] = data & 0xff;
 					STC90C51.PC++;
 					var asStr = "INC @R" + offset;
 					console.log(asStr);
@@ -2391,8 +2418,13 @@ function R_Factory(key) {
 		case "Rn_INC":
 			return function(offset) {
 				return function() {
-					var addr = getAddr(offset);
-					STC90C51.RAM[addr]++;
+					var addr = getAddr(offset),
+						data = STC90C51.RAM[addr];
+					if(++data>255){
+						STC90C51.RAM[addr] = 0;
+					}else{
+						STC90C51.RAM[addr] = data;
+					}
 					STC90C51.PC++;
 					var asStr = "INC R" + offset;
 					console.log(asStr);
@@ -2453,10 +2485,11 @@ function R_Factory(key) {
 			return function(offset) {
 				return function() {
 					var addr = getAddr(offset),
-						data = STC90C51.getDir(getData16(++STC90C51.PC));
+						dir = getData16(++STC90C51.PC),
+						data = STC90C51.getDir(dir);
 					STC90C51.RAM[addr] = data;
 					STC90C51.PC++;
-					var asStr = "MOV R" + offset + "," + addr;
+					var asStr = "MOV R" + offset + "," + dir;
 					console.log(asStr);
 					var retData = {
 						asStr: asStr,
@@ -2510,7 +2543,6 @@ function R_Factory(key) {
 					}else{
 						STC90C51.PC += 1;
 					}
-					STC90C51.PC += (data2 == data) ? rel + 1 : 1;
 					var asStr = "CJNE R" + offset + ",#" + data2 + "," + rel;
 					console.log(asStr);
 					var retData = {
