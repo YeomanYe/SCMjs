@@ -27,8 +27,10 @@ window.onload = function () {
 var digA,digB,digC,digD,digE,digF,digG,digDP;
 //数码管段选端口
 var dig1,dig2,dig3,dig4,dig5,dig6,dig7,dig8;
-//端口改变处理函数
+//LED灯端口
+var LED1,LED2,LED3,LED4,LED5,LED6,LED7,LED0;
 
+//端口改变处理函数
 function pinBound(portElem){
     var portId = portElem.id,
         portValue = portElem.value,
@@ -54,5 +56,13 @@ function pinBound(portElem){
         case "6":dig6=temp;break;
         case "7":dig7=temp;break;
         case "8":dig8=temp;break;
+        case "LED1":LED1=temp;break;
+        case "LED2":LED2=temp;break;
+        case "LED3":LED3=temp;break;
+        case "LED4":LED4=temp;break;
+        case "LED5":LED5=temp;break;
+        case "LED6":LED6=temp;break;
+        case "LED7":LED7=temp;break;
+        case "LED0":LED0=temp;break;
     }
 }

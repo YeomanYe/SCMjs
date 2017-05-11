@@ -4,7 +4,7 @@ var ctx;
 var canWidth, canHeight;
 
 //canvas初始化
-function canvasInit(){
+function canvasInit() {
     var canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
     canWidth = canvas.offsetWidth;
@@ -19,10 +19,11 @@ function drawBack() {
     ctx.closePath();
 }
 
-function draw(){
+function draw() {
     drawBack();
     drawSCM();
-    drawDigit(0xff,0x00);
+    drawDigit(0xff, 0x00);
+    drawLED(0x30);
 }
 
 
@@ -34,8 +35,39 @@ function drawSCM() {
     var img = new Image();
     img.src = "img/SCM.png";
     img.onload = function() {
-        ctx.drawImage(img, canWidth / 2 - scmWidth / 2, 180, scmWidth, scmHeight);
+        ctx.drawImage(img, canWidth / 2 - scmWidth / 2 - 100, 180, scmWidth, scmHeight);
     };
+}
+
+//绘制LED灯
+function drawLED(pins) {
+    var ledPosX = canWidth - 100,
+        ledPosY = 100,
+        ledWidth = 60,
+        ledHeight = 300;
+    //绘制外框
+    ctx.beginPath();
+    ctx.fillStyle = "#008080";
+    ctx.fillRect(ledPosX, ledPosY, ledWidth, ledHeight);
+    ctx.closePath();
+    //灯泡绘制
+    var i = 0,
+        gap = ledHeight / 9,
+        radius = (ledWidth - 35) / 2;
+
+    ctx.font = "10px Arial";
+    ctx.textAlign = "right";
+    for (i = 0; i < 8; i++) {
+        //绘制文字
+        ctx.fillStyle = "#000000";
+        ctx.fillText("LED" + i, ledPosX, ledPosY + (i + 1) * gap);
+        //绘制灯泡
+        ctx.fillStyle = ((pins>>i)&0x01)?"#FFB3B3":"#FF0000";
+        ctx.beginPath();
+        ctx.arc(ledPosX + ledWidth / 2, ledPosY + (i + 1) * gap, radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.closePath();
+    }
 }
 
 //绘制数码管
