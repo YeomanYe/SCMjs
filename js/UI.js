@@ -1,3 +1,30 @@
+(function() {
+    var lastTime = 0;
+    var vendors = ['webkit', 'moz'];
+    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] ||    // name has changed in Webkit
+                                      window[vendors[x] + 'CancelRequestAnimationFrame'];
+    }
+
+    if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
+            var id = window.setTimeout(function() {
+                callback(currTime + timeToCall);
+            }, timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+    }
+    if (!window.cancelAnimationFrame) {
+        window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+        };
+    }
+}());
+
 //canvas绘制环境
 var ctx;
 //canvas宽高
@@ -20,10 +47,18 @@ function drawBack() {
 }
 
 function draw() {
+    ctx.clearRect(0,0,canWidth,canHeight);
     drawBack();
     drawSCM();
     drawDigit(0xff, 0x00);
-    drawLED(0x30);
+    var ledPin = (LED0() << 0 | LED1() << 1 | LED2() << 2 | LED3() << 3 | LED4() << 4 | LED5() << 5 | LED6() << 6 | LED7() << 7);
+    console.log("%cLED:"+ledPin,"color:green");
+    console.log("%cP0:"+STC90C51.P0(),"color:green");
+    console.log("P1:"+STC90C51.P1());
+    console.log("P2:"+STC90C51.P2());
+    console.log("P3:"+STC90C51.P3());
+    drawLED(ledPin);
+    requestAnimationFrame(draw);
 }
 
 

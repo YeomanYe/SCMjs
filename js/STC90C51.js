@@ -373,7 +373,7 @@ var STC90C51 = {
 	 */
 	//设置特殊功能寄存器位
 	setSFRsBit:function(addr,bit){
-		var abs = parseInt(addr / 8 * 8),
+		var abs = parseInt((addr - 0x80) / 8 ),
 			rel = addr % 8;
 		if (bit) {
 			STC90C51.SFRs[abs] = STC90C51.SFRs[abs] | (0x01 << rel);
@@ -383,7 +383,7 @@ var STC90C51 = {
 	},
 	//获取特殊功能寄存器位
 	getSFRsBit:function(addr){
-		var abs = parseInt(addr / 8 * 8 ),
+		var abs = parseInt((addr - 0x80) / 8 ),
 			rel = addr % 8;
 		return STC90C51.SFRs[abs] >> rel & 0x01;
 	},
