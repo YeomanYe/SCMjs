@@ -68,19 +68,19 @@ var Ri_MOV_DIR = R_Factory("Ri_MOV_DIR");
 var Rn_MOV_DIR = R_Factory("Rn_MOV_DIR");
 
 var STC90C51 = {
-	//±êÖ¾CPUÊÇ·ñÍ£Ö¹
+	//æ ‡å¿—CPUæ˜¯å¦åœæ­¢
 	isPause: false,
-	//³ÌĞò´æ´¢Æ÷
+	//ç¨‹åºå­˜å‚¨å™¨
 	PFM: new Array(64 * 1024),
-	//Êı¾İ´æ´¢Æ÷
+	//æ•°æ®å­˜å‚¨å™¨
 	RAM: new Array(2 * 128),
-	//SFRsÌØÊâ¹¦ÄÜ¼Ä´æÆ÷
+	//SFRsç‰¹æ®ŠåŠŸèƒ½å¯„å­˜å™¨
 	SFRs: new Array(128),
-	//ÎïÀí¿Õ¼äÎªÄÚ²¿£¬Âß¼­µØÖ·ÎªÍâ²¿µÄ´æ´¢Æ÷
+	//ç‰©ç†ç©ºé—´ä¸ºå†…éƒ¨ï¼Œé€»è¾‘åœ°å€ä¸ºå¤–éƒ¨çš„å­˜å‚¨å™¨
 	ExRAM: new Array(1024),
-	//³ÌĞò¼ÆÊıÆ÷ 0x0000
+	//ç¨‹åºè®¡æ•°å™¨ 0x0000
 	PC: 0X0000,
-	//ÖĞ¶ÏÏòÁ¿±í,±£´æÖĞ¶ÏÈë¿ÚÎ»ÖÃ£¬Êµ¼ÊÖĞ²»´æÔÚ
+	//ä¸­æ–­å‘é‡è¡¨,ä¿å­˜ä¸­æ–­å…¥å£ä½ç½®ï¼Œå®é™…ä¸­ä¸å­˜åœ¨
 	IVT: [],
 	//port0 80H 0xff
 	P0: function(val) {
@@ -246,9 +246,9 @@ var STC90C51 = {
 	B: function(val) {
 		return val !== undefined ? STC90C51.SFRs[0xF0-0x80] = val : STC90C51.SFRs[0XF0-0x80];
 	},
-	//»ñÈ¡RNµÄÖµ
+	//è·å–RNçš„å€¼
 	RN:function(offset){
-		//¸ù¾İRSÅĞ¶ÏRnµØÖ·
+		//æ ¹æ®RSåˆ¤æ–­Rnåœ°å€
 		var RS = 0x18 & STC90C51.PSW(),
 			addr;
 		offset = offset ? offset : 0;
@@ -269,7 +269,7 @@ var STC90C51 = {
 		return STC90C51.RAM[addr];
 	},
 	RI:function(offset){
-		//¸ù¾İRSÅĞ¶ÏRnµØÖ·
+		//æ ¹æ®RSåˆ¤æ–­Rnåœ°å€
 		var RS = 0x18 & STC90C51.PSW(),
 			addr;
 		offset = offset ? offset : 0;
@@ -289,9 +289,9 @@ var STC90C51 = {
 		}
 		return STC90C51.RAM[STC90C51.RAM[addr]];
 	},
-	//ÏÂÔØÖ¸Áîµ½PFMÖĞ
+	//ä¸‹è½½æŒ‡ä»¤åˆ°PFMä¸­
 	loadCommandToPFM: function(txt) {
-		//ÖØÖÃÏÂPFM
+		//é‡ç½®ä¸‹PFM
 		this.PFM = [];
 		txt = replaceAll(txt, "\r\n", "");
 		var tempArr = txt.split(":");
@@ -299,17 +299,17 @@ var STC90C51 = {
 		var i, len;
 		for (i = 0, len = tempArr.length; i < len; i++) {
 			// tempArr[i].shift();
-			//ÕûÌõ¼ÇÂ¼³¤¶È
+			//æ•´æ¡è®°å½•é•¿åº¦
 			var recordLen = tempArr[i].length;
-			//»ñÈ¡Êı¾İ³¤¶È
+			//è·å–æ•°æ®é•¿åº¦
 			var dataLen = parseInt(tempArr[i].substr(0, 2), 16);
-			//»ñÈ¡µØÖ·Óò
+			//è·å–åœ°å€åŸŸ
 			var addrField = parseInt(tempArr[i].substr(2, 4), 16);
-			//¼ÇÂ¼ÀàĞÍ
+			//è®°å½•ç±»å‹
 			var reacordType = parseInt(tempArr[i].substr(6, 2), 16);
-			//Ğ£ÑéÎ»
+			//æ ¡éªŒä½
 			var validation = parseInt(tempArr[i].substr(recordLen - 2, 2), 16);
-			//Êı¾İ
+			//æ•°æ®
 			var data = tempArr[i].substr(8, dataLen * 2);
 
 			if (validation === 0XFF && reacordType === 0X01) {
@@ -325,30 +325,30 @@ var STC90C51 = {
 				return;
 			}
 			if (this.isRecord(data, validation)) {
-				//Ğ£Ñé³É¹¦½«Êı¾İÎ»¼ÓÈëPFMÖĞ
+				//æ ¡éªŒæˆåŠŸå°†æ•°æ®ä½åŠ å…¥PFMä¸­
 				for (var j = 0; j < dataLen; j++) {
 					this.PFM[addrField + j] = data.substr(j * 2, 2);
 				}
 			} else {
-				//Ğ£ÑéÊ§°Ü£¬ÊäÈëÊı¾İÓĞÎó
+				//æ ¡éªŒå¤±è´¥ï¼Œè¾“å…¥æ•°æ®æœ‰è¯¯
 				//console.log("data error");
 				break;
 			}
 		}
-		//Ğ£Ñé³É¹¦ºó½«Êı¾İ±£´æµ½localStorageÖĞÒÔ±ãÏÂ´Î¶ÁÈ¡
+		//æ ¡éªŒæˆåŠŸåå°†æ•°æ®ä¿å­˜åˆ°localStorageä¸­ä»¥ä¾¿ä¸‹æ¬¡è¯»å–
 		localStorage.setItem("hex",STC90C51.PFM);
 	},
-	//Ğ£Ñé¼ì²âÊı¾İÊÇ·ñÓĞÎó
+	//æ ¡éªŒæ£€æµ‹æ•°æ®æ˜¯å¦æœ‰è¯¯
 	isRecord: function(data, validation) {
 		var sum = 0;
 		for (var i = 0, len = data.length; i < len; i++) {
 			sum += parseInt(data.substr(i * 2, 2), 16);
 		}
 		sum &= 0xff;
-		//Ğ£ÑéÎ»ÊÇÊı¾İÎ»Ö®ºÍµÄÈ¡·´µÄµÍ16Î»
+		//æ ¡éªŒä½æ˜¯æ•°æ®ä½ä¹‹å’Œçš„å–åçš„ä½16ä½
 		return sum & validation ? false : true;
 	},
-	//µÃµ½Æ¬Íâ´æ´¢Æ÷µÄÊı¾İ
+	//å¾—åˆ°ç‰‡å¤–å­˜å‚¨å™¨çš„æ•°æ®
 	getExData: function(addr) {
 		var extram = (STC90C51.AUXR() >> 1) & 0X01;
 		var data;
@@ -357,7 +357,7 @@ var STC90C51 = {
 		}
 		return data;
 	},
-	//ÏòÆ¬Íâ´æ´¢Æ÷ÉèÖÃÊı¾İ
+	//å‘ç‰‡å¤–å­˜å‚¨å™¨è®¾ç½®æ•°æ®
 	setExData: function(addr, data) {
 		var extram = (STC90C51.AUXR() >> 1) & 0X01;
 		if (!extram) {
@@ -371,7 +371,7 @@ var STC90C51 = {
 	P2:A0~A7
 	P3:B0~B7
 	 */
-	//ÉèÖÃÌØÊâ¹¦ÄÜ¼Ä´æÆ÷Î»
+	//è®¾ç½®ç‰¹æ®ŠåŠŸèƒ½å¯„å­˜å™¨ä½
 	setSFRsBit:function(addr,bit){
 		var abs = parseInt((addr - 0x80) / 8) * 8,
 			rel = addr % 8;
@@ -381,19 +381,19 @@ var STC90C51 = {
 			STC90C51.SFRs[abs] = STC90C51.SFRs[abs] & (~(0x01 << rel)) & 0xFF;
 		}
 	},
-	//»ñÈ¡ÌØÊâ¹¦ÄÜ¼Ä´æÆ÷Î»
+	//è·å–ç‰¹æ®ŠåŠŸèƒ½å¯„å­˜å™¨ä½
 	getSFRsBit:function(addr){
 		var abs = parseInt((addr - 0x80) / 8 ) * 8,
 			rel = addr % 8;
 		return STC90C51.SFRs[abs] >> rel & 0x01;
 	},
-	//»ñÈ¡Î»
+	//è·å–ä½
 	getBit: function(addr) {
 		var abs = parseInt(addr / 8),
 			rel = addr % 8;
 		return STC90C51.RAM[abs] >> rel & 0x01;
 	},
-	//ÉèÖÃÎ»
+	//è®¾ç½®ä½
 	setBit: function(addr, bit) {
 		var abs = parseInt(addr / 8),
 			rel = addr % 8;
@@ -403,23 +403,23 @@ var STC90C51 = {
 			STC90C51.RAM[abs] = STC90C51.RAM[abs] & (~(0x01 << rel)) & 0xFF;
 		}
 	},
-	//»ñÈ¡Ö±½ÓµØÖ·µÄÖµ
+	//è·å–ç›´æ¥åœ°å€çš„å€¼
 	getDir: function(addr) {
 		return (addr >= 128) ? STC90C51.SFRs[addr - 128] : STC90C51.RAM[addr];
 	},
-	//ÉèÖÃÖ±½ÓµØÖ·µÄÖµ
+	//è®¾ç½®ç›´æ¥åœ°å€çš„å€¼
 	setDir: function(addr, data) {
 		return (addr >= 128) ? STC90C51.SFRs[addr - 128] = data : STC90C51.RAM[addr] = data;
 	},
-	//µ¥Æ¬»ú¸´Î»º¯Êı
+	//å•ç‰‡æœºå¤ä½å‡½æ•°
 	reset: function() {
-		//³ÌĞò¼ÆÊıÆ÷¹éÁã
+		//ç¨‹åºè®¡æ•°å™¨å½’é›¶
 		STC90C51.PC = 0;
-		//¼Ä´æÆ÷¸´Î»
+		//å¯„å­˜å™¨å¤ä½
 		for(var i=0,len=STC90C51.SFRs.length;i<len;i++){
 			STC90C51.SFRs[i]=0;
 		}
-		//RAM¸´Î»
+		//RAMå¤ä½
 		for(i=0,len=STC90C51.RAM.length;i<len;i++){
 			STC90C51.RAM[i]=0;
 		}
@@ -465,7 +465,7 @@ var STC90C51 = {
 		STC90C51.P4(0X0F);
 		STC90C51.B(0X00);
 	},
-	//¸÷×ÔÁî¶ÔÓ¦µÄº¯Êı
+	//å„è‡ªä»¤å¯¹åº”çš„å‡½æ•°
 	cmdFunc: [
 		//NOP 00H 1
 		function() {
@@ -495,7 +495,7 @@ var STC90C51 = {
 		},
 		//RR 03 1
 		function() {
-			//Ñ­»·ÓÒÒÆÒ»Î»
+			//å¾ªç¯å³ç§»ä¸€ä½
 			STC90C51.ACC(STC90C51.ACC() >> 1 | STC90C51.ACC() << 7);
 			STC90C51.PC++;
 			var asStr = "RR A";
@@ -554,8 +554,8 @@ var STC90C51 = {
 		Rn_INC(7),
 		//JBC bit,rel 10 3
 		function() {
-			//ÅĞ¶Ï¶ÔÓ¦µÄÎ»ÊÇ·ñÎª1£¬Îª1½øĞĞÏà¶ÔÌø×ª
-			//»ñÈ¡¿ÉÎ»Ñ°Ö·Çø¶ÔÓ¦Î»ÖÃ
+			//åˆ¤æ–­å¯¹åº”çš„ä½æ˜¯å¦ä¸º1ï¼Œä¸º1è¿›è¡Œç›¸å¯¹è·³è½¬
+			//è·å–å¯ä½å¯»å€åŒºå¯¹åº”ä½ç½®
 			var addr = getData16(++STC90C51.PC),
 				rel = getRel(++STC90C51.PC),
 				bit = STC90C51.getBit(addr);
@@ -573,11 +573,11 @@ var STC90C51 = {
 		ACALL,
 		//LCALL addr16 12 3
 		function() {
-			//·Ö±ğ·ÅÖÃµÍ8Î»ºÍ¸ß8Î»Ìø×ªµØÖ·
+			//åˆ†åˆ«æ”¾ç½®ä½8ä½å’Œé«˜8ä½è·³è½¬åœ°å€
 			var addrh8 = getData16(++STC90C51.PC);
 			var addrl8 = getData16(++STC90C51.PC);
 			++STC90C51.PC;
-			//·Ö±ğ·ÅÖÃµÍ8Î»ºÍ¸ß8Î»
+			//åˆ†åˆ«æ”¾ç½®ä½8ä½å’Œé«˜8ä½
 			STC90C51.SP(STC90C51.SP() + 1);
 			STC90C51.RAM[STC90C51.SP()] = STC90C51.PC & 0X00FF;
 			STC90C51.SP(STC90C51.SP() + 1);
@@ -653,8 +653,8 @@ var STC90C51 = {
 		Rn_DEC(7),
 		//JB bit,rel 20 3
 		function() {
-			//ÅĞ¶Ï¶ÔÓ¦µÄÎ»ÊÇ·ñÎª1£¬Îª1½øĞĞÏà¶ÔÌø×ª
-			//»ñÈ¡¿ÉÎ»Ñ°Ö·Çø¶ÔÓ¦Î»ÖÃ
+			//åˆ¤æ–­å¯¹åº”çš„ä½æ˜¯å¦ä¸º1ï¼Œä¸º1è¿›è¡Œç›¸å¯¹è·³è½¬
+			//è·å–å¯ä½å¯»å€åŒºå¯¹åº”ä½ç½®
 			var addr = getData16(++STC90C51.PC),
 				rel = getRel(++STC90C51.PC),
 				bit = STC90C51.getDir(addr);
@@ -705,14 +705,14 @@ var STC90C51 = {
 			STC90C51.PC++;
 			var a_data = STC90C51.ACC(),
 				result = a_data + data;
-			//Èç¹û½á¹ûÒç³ö½«½øÎ»±êÖ¾Î»ºÍÒç³ö±êÖ¾Î»ÖÃ1£¬²¢Ê¹½á¹ûÎªÒç³ö´óĞ¡
+			//å¦‚æœç»“æœæº¢å‡ºå°†è¿›ä½æ ‡å¿—ä½å’Œæº¢å‡ºæ ‡å¿—ä½ç½®1ï¼Œå¹¶ä½¿ç»“æœä¸ºæº¢å‡ºå¤§å°
 			if(result>255){
 				result -= 255;
 				STC90C51.PSW(STC90C51.PSW() | 0x84);
 			}else{
 				STC90C51.PSW(STC90C51.PSW() & 0x7B);
 			}
-			//ÅĞ¶Ï½øÎ»¸¨ÖúÎ»ÊÇ·ñÒªÖÃ1
+			//åˆ¤æ–­è¿›ä½è¾…åŠ©ä½æ˜¯å¦è¦ç½®1
 			if((a_data&0x08) && (data&0x08)){
 				STC90C51.PSW(STC90C51.PSW() | 0x40);
 			}else if(((a_data&0x08)|(data&0x08)) && ((a_data&0x04)|(data&0x04))){
@@ -732,14 +732,14 @@ var STC90C51 = {
 				data = STC90C51.getDir(addr);
 			var a_data = STC90C51.ACC(),
 				result = a_data + data;
-			//Èç¹û½á¹ûÒç³ö½«½øÎ»±êÖ¾Î»ºÍÒç³ö±êÖ¾Î»ÖÃ1£¬²¢Ê¹½á¹ûÎªÒç³ö´óĞ¡
+			//å¦‚æœç»“æœæº¢å‡ºå°†è¿›ä½æ ‡å¿—ä½å’Œæº¢å‡ºæ ‡å¿—ä½ç½®1ï¼Œå¹¶ä½¿ç»“æœä¸ºæº¢å‡ºå¤§å°
 			if(result>255){
 				result -= 255;
 				STC90C51.PSW(STC90C51.PSW() | 0x84);
 			}else{
 				STC90C51.PSW(STC90C51.PSW() & 0x7B);
 			}
-			//ÅĞ¶Ï½øÎ»¸¨ÖúÎ»ÊÇ·ñÒªÖÃ1
+			//åˆ¤æ–­è¿›ä½è¾…åŠ©ä½æ˜¯å¦è¦ç½®1
 			if((a_data&0x08) && (data&0x08)){
 				STC90C51.PSW(STC90C51.PSW() | 0x40);
 			}else if(((a_data&0x08)|(data&0x08)) && ((a_data&0x04)|(data&0x04))){
@@ -777,8 +777,8 @@ var STC90C51 = {
 		Rn_ADD(7),
 		//JNB bit,rel 30 3
 		function() {
-			//ÅĞ¶Ï¶ÔÓ¦µÄÎ»ÊÇ·ñÎª1£¬Îª1½øĞĞÏà¶ÔÌø×ª
-			//»ñÈ¡¿ÉÎ»Ñ°Ö·Çø¶ÔÓ¦Î»ÖÃ
+			//åˆ¤æ–­å¯¹åº”çš„ä½æ˜¯å¦ä¸º1ï¼Œä¸º1è¿›è¡Œç›¸å¯¹è·³è½¬
+			//è·å–å¯ä½å¯»å€åŒºå¯¹åº”ä½ç½®
 			var addr = getData16(++STC90C51.PC),
 				rel = getRel(++STC90C51.PC),
 				bit = STC90C51.getDir(addr);
@@ -799,7 +799,7 @@ var STC90C51 = {
 				iph = STC90C51.IPH(),
 				ip = STC90C51.IP(),
 				xicon = STC90C51.XICON();
-			//ÖĞ¶ÏÓÅÏÈ¼¶Çå0
+			//ä¸­æ–­ä¼˜å…ˆçº§æ¸…0
 			switch (IV) {
 				//X0
 				case 0X03:
@@ -872,7 +872,7 @@ var STC90C51 = {
 			var data = getData16(++STC90C51.PC);
 			var CY = STC90C51.PSW() & 0X80;
 			var ret = STC90C51.ACC(STC90C51.ACC() + data + CY);
-			//´óÓÚ255½øÎ»Î»ÖÃ1,·ñÔò½øÎ»Î»Çå0
+			//å¤§äº255è¿›ä½ä½ç½®1,å¦åˆ™è¿›ä½ä½æ¸…0
 			if (ret > 255) {
 				STC90C51.PSW(STC90C51.PSW() | 0X80);
 			} else {
@@ -893,7 +893,7 @@ var STC90C51 = {
 				data = STC90C51.getDir(addr);
 			var CY = STC90C51.PSW() & 0X80;
 			var ret = STC90C51.ACC(STC90C51.ACC() + data + CY);
-			//´óÓÚ255½øÎ»Î»ÖÃ1,·ñÔò½øÎ»Î»Çå0
+			//å¤§äº255è¿›ä½ä½ç½®1,å¦åˆ™è¿›ä½ä½æ¸…0
 			if (ret > 255) {
 				STC90C51.PSW(STC90C51.PSW() | 0X80);
 			} else {
@@ -1454,7 +1454,7 @@ var STC90C51 = {
 			var ret = STC90C51.ACC(STC90C51.ACC() - data - CY);
 			if (ret < 0) {
 				STC90C51.PSW(STC90C51.PSW() | 0X80);
-				//È¥µôÒç³öÎ»
+				//å»æ‰æº¢å‡ºä½
 				STC90C51.ACC(STC90C51.ACC() & 0XFF);
 			}
 			STC90C51.PC++;
@@ -1474,7 +1474,7 @@ var STC90C51 = {
 			var ret = STC90C51.ACC(STC90C51.ACC() - data - CY);
 			if (ret < 0) {
 				STC90C51.PSW(STC90C51.PSW() | 0X80);
-				//È¥µôÒç³öÎ»
+				//å»æ‰æº¢å‡ºä½
 				STC90C51.ACC(STC90C51.ACC() & 0XFF);
 			}
 			STC90C51.PC++;
@@ -1510,7 +1510,7 @@ var STC90C51 = {
 		function() {
 			var addr = getData16(++STC90C51.PC),
 				bit = STC90C51.getBit(addr);
-			//µ¥¸öÎ»È¡·´
+			//å•ä¸ªä½å–å
 			bit = bit ? 0 : bit;
 			var CY = STC90C51.PSW() & 0X80;
 			STC90C51.PSW(STC90C51.PSW() | (CY | bit << 7));
@@ -1655,10 +1655,10 @@ var STC90C51 = {
 			if(a!=data){
 				STC90C51.PC += rel + 1;
 				if(data>a){
-					//½øÎ»±êÖ¾Î»ÖÃ1
+					//è¿›ä½æ ‡å¿—ä½ç½®1
 					STC90C51.PSW(STC90C51.PSW()|0X80);
 				}else{
-					//½øÎ»±êÖ¾Î»ÖÃ0
+					//è¿›ä½æ ‡å¿—ä½ç½®0
 					STC90C51.PSW(STC90C51.PSW()&0X7F);
 				}
 			}else{
@@ -1681,10 +1681,10 @@ var STC90C51 = {
 			if(data2!=data){
 				STC90C51.PC += rel + 1;
 				if(data>a){
-					//½øÎ»±êÖ¾Î»ÖÃ1
+					//è¿›ä½æ ‡å¿—ä½ç½®1
 					STC90C51.PSW(STC90C51.PSW()|0X80);
 				}else{
-					//½øÎ»±êÖ¾Î»ÖÃ0
+					//è¿›ä½æ ‡å¿—ä½ç½®0
 					STC90C51.PSW(STC90C51.PSW()&0X7F);
 				}
 			}else{
@@ -2053,7 +2053,7 @@ var STC90C51 = {
 function AJMP() {
 	var addrh = STC90C51.PFM[STC90C51.PC] & 0XE0,
 		addrl = STC90C51.PFM[++STC90C51.PC];
-	//ÉèÖÃÌø×ªµØÖ·
+	//è®¾ç½®è·³è½¬åœ°å€
 	var addr11 = (addrh << 3) | addrl;
 	STC90C51.PC = STC90C51.PC & 0XFC00 | addr11;
 	var asStr = "AJMP " + addr11;
@@ -2068,12 +2068,12 @@ function AJMP() {
 function ACALL() {
 	var addrh = STC90C51.PFM[STC90C51.PC] & 0XE0,
 		addrl = STC90C51.PFM[++STC90C51.PC];
-	//·Ö±ğ·ÅÖÃµÍ8Î»ºÍ¸ß8Î»
+	//åˆ†åˆ«æ”¾ç½®ä½8ä½å’Œé«˜8ä½
 	STC90C51.SP(STC90C51.SP() + 1);
 	STC90C51.RAM[STC90C51.SP()] = STC90C51.PC & 0X00FF;
 	STC90C51.SP(STC90C51.SP() + 1);
 	STC90C51.RAM[STC90C51.SP()] = STC90C51.PC >> 8;
-	//ÉèÖÃÌø×ªµØÖ·
+	//è®¾ç½®è·³è½¬åœ°å€
 	var addr11 = (addrh << 3) | addrl;
 	STC90C51.PC = STC90C51.PC & 0XF800 | addr11;
 	var asStr = "ACALL " + addr11;
@@ -2086,9 +2086,9 @@ function ACALL() {
 }
 
 function R_Factory(key) {
-	//»ñµÃµØÖ·
+	//è·å¾—åœ°å€
 	function getAddr(offset) {
-		//¸ù¾İRSÅĞ¶ÏR0µØÖ·
+		//æ ¹æ®RSåˆ¤æ–­R0åœ°å€
 		var RS = 0x18 & STC90C51.PSW(),
 			addr;
 		offset = offset ? offset : 0;
@@ -2108,34 +2108,34 @@ function R_Factory(key) {
 		}
 		return addr;
 	}
-	//¸ù¾İµØÖ·µÃµ½Êı¾İ
+	//æ ¹æ®åœ°å€å¾—åˆ°æ•°æ®
 	function getData(addr) {
 		return STC90C51.RAM[addr];
 	}
-	//¼Ó·¨²»º¬½øÎ»
+	//åŠ æ³•ä¸å«è¿›ä½
 	function Add(data) {
 		var ret = STC90C51.ACC(STC90C51.ACC() + data);
 		var a_data = STC90C51.ACC(),
 				result = a_data + data;
-			//Èç¹û½á¹ûÒç³ö½«½øÎ»±êÖ¾Î»ºÍÒç³ö±êÖ¾Î»ÖÃ1£¬²¢Ê¹½á¹ûÎªÒç³ö´óĞ¡
+			//å¦‚æœç»“æœæº¢å‡ºå°†è¿›ä½æ ‡å¿—ä½å’Œæº¢å‡ºæ ‡å¿—ä½ç½®1ï¼Œå¹¶ä½¿ç»“æœä¸ºæº¢å‡ºå¤§å°
 			if(result>255){
 				result -= 255;
 				STC90C51.PSW(STC90C51.PSW() | 0x84);
 			}else{
 				STC90C51.PSW(STC90C51.PSW() & 0x7B);
 			}
-			//ÅĞ¶Ï½øÎ»¸¨ÖúÎ»ÊÇ·ñÒªÖÃ1
+			//åˆ¤æ–­è¿›ä½è¾…åŠ©ä½æ˜¯å¦è¦ç½®1
 			if((a_data&0x08) && (data&0x08)){
 				STC90C51.PSW(STC90C51.PSW() | 0x40);
 			}else if(((a_data&0x08)|(data&0x08)) && ((a_data&0x04)|(data&0x04))){
 				STC90C51.PSW(STC90C51.PSW() | 0x40);
 			}
 	}
-	//¼Ó·¨º¬½øÎ»
+	//åŠ æ³•å«è¿›ä½
 	function Addc(data) {
 		var CY = (STC90C51.PSW() & 0X80) >> 7;
 		var ret = STC90C51.ACC(STC90C51.ACC() + data + CY);
-		//´óÓÚ255½øÎ»Î»ÖÃ1,·ñÔò½øÎ»Î»Çå0
+		//å¤§äº255è¿›ä½ä½ç½®1,å¦åˆ™è¿›ä½ä½æ¸…0
 		if (ret > 255) {
 			STC90C51.ACC(STC90C51.ACC() & 0X00FF);
 			STC90C51.PSW(STC90C51.PSW() | 0X80);
@@ -2143,7 +2143,7 @@ function R_Factory(key) {
 			STC90C51.PSW(STC90C51.PSW() & 0X7F);
 		}
 	}
-	//½èÎ»¼õ·¨
+	//å€Ÿä½å‡æ³•
 	function Subb(data) {
 		var CY = (STC90C51.PSW() & 0X80) >> 7;
 		var ret = STC90C51.ACC(STC90C51.ACC() - data - CY);
@@ -2507,10 +2507,10 @@ function R_Factory(key) {
 					if(data2!=data){
 						STC90C51.PC += rel + 1;
 						if(data<data2){
-							//½øÎ»±êÖ¾Î»ÖÃ1
+							//è¿›ä½æ ‡å¿—ä½ç½®1
 							STC90C51.PSW(STC90C51.PSW()|0X80);
 						}else{
-							//½øÎ»±êÖ¾Î»ÖÃ0
+							//è¿›ä½æ ‡å¿—ä½ç½®0
 							STC90C51.PSW(STC90C51.PSW()&0X7F);
 						}
 					}else{
@@ -2534,10 +2534,10 @@ function R_Factory(key) {
 					if(data2!=data){
 						STC90C51.PC += rel + 1;
 						if(data<data2){
-							//½øÎ»±êÖ¾Î»ÖÃ1
+							//è¿›ä½æ ‡å¿—ä½ç½®1
 							STC90C51.PSW(STC90C51.PSW()|0X80);
 						}else{
-							//½øÎ»±êÖ¾Î»ÖÃ0
+							//è¿›ä½æ ‡å¿—ä½ç½®0
 							STC90C51.PSW(STC90C51.PSW()&0X7F);
 						}
 					}else{
@@ -2720,11 +2720,11 @@ function R_Factory(key) {
 			};
 	}
 }
-//µÃµ½16½øÖÆÊı¾İ£¬PFMÖĞ
+//å¾—åˆ°16è¿›åˆ¶æ•°æ®ï¼ŒPFMä¸­
 function getData16(addr) {
 	return parseInt(STC90C51.PFM[addr], 16);
 }
-//»ñÈ¡Ïà¶ÔÌø×ªµØÖ·
+//è·å–ç›¸å¯¹è·³è½¬åœ°å€
 function getRel(addr) {
 	var rel = getData16(addr);
 	if (rel > 127) {

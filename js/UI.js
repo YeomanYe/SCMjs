@@ -54,9 +54,9 @@ function draw() {
     var ledPin = (LED0() << 0 | LED1() << 1 | LED2() << 2 | LED3() << 3 | LED4() << 4 | LED5() << 5 | LED6() << 6 | LED7() << 7);
     console.log("%cLED:"+ledPin,"color:green");
     console.log("%cP0:"+STC90C51.P0(),"color:green");
-    console.log("P1:"+STC90C51.P1());
-    console.log("P2:"+STC90C51.P2());
-    console.log("P3:"+STC90C51.P3());
+    console.log("%cP1:"+STC90C51.P1(),"color:green");
+    console.log("%cP2:"+STC90C51.P2(),"color:green");
+    console.log("%cP3:"+STC90C51.P3(),"color:green");
     drawLED(ledPin);
     requestAnimationFrame(draw);
 }
