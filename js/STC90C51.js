@@ -522,7 +522,8 @@ var STC90C51 = {
 		function() {
 			var addr = getData16(++STC90C51.PC),
 				data = STC90C51.getDir(addr);
-			STC90C51.setDir(++data & 0xFF);
+			debugger;
+			STC90C51.setDir(addr,++data & 0xFF);
 			STC90C51.PC++;
 			var asStr = "INC " + addr;
 			console.log(asStr);
@@ -2049,7 +2050,6 @@ function Add(data) {
 	// var ret = STC90C51.ACC(STC90C51.ACC() + data);
 	var a_data = STC90C51.ACC(),
 		result = a_data + data;
-	debugger;
 	STC90C51.ACC(result & 0xff);
 	//如果结果溢出将进位标志位和溢出标志位置1，并使结果为溢出大小
 	if (result > 255 || result < -255) {

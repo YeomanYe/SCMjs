@@ -47,7 +47,7 @@ function drawBack() {
 }
 
 function draw() {
-    ctx.clearRect(0,0,canWidth,canHeight);
+    // ctx.clearRect(0,0,canWidth,canHeight);
     drawBack();
     drawSCM();
     drawDigit(0xff, 0x00);
