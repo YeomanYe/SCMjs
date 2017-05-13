@@ -84,170 +84,170 @@ var STC90C51 = {
 	IVT: [],
 	//port0 80H 0xff
 	P0: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0x80-0x80] = val : STC90C51.SFRs[0X80-0x80];
+		return val !== undefined ? STC90C51.SFRs[0x80 - 0x80] = val : STC90C51.SFRs[0X80 - 0x80];
 	},
 	//81H 0x07
 	SP: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0x81-0x80] = val : STC90C51.SFRs[0X81-0x80];
+		return val !== undefined ? STC90C51.SFRs[0x81 - 0x80] = val : STC90C51.SFRs[0X81 - 0x80];
 	},
 	//82H 0x00
 	DPL: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0x82-0x80] = val : STC90C51.SFRs[0X82-0x80];
+		return val !== undefined ? STC90C51.SFRs[0x82 - 0x80] = val : STC90C51.SFRs[0X82 - 0x80];
 	},
 	//83H 0x00
 	DPH: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0x83-0x80] = val : STC90C51.SFRs[0X83-0x80];
+		return val !== undefined ? STC90C51.SFRs[0x83 - 0x80] = val : STC90C51.SFRs[0X83 - 0x80];
 	},
 	//87H 0x10
 	PCON: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0x87-0x80] = val : STC90C51.SFRs[0X87-0x80];
+		return val !== undefined ? STC90C51.SFRs[0x87 - 0x80] = val : STC90C51.SFRs[0X87 - 0x80];
 	},
 	//88H 0x00
 	TCON: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0x88-0x80] = val : STC90C51.SFRs[0X88-0x80];
+		return val !== undefined ? STC90C51.SFRs[0x88 - 0x80] = val : STC90C51.SFRs[0X88 - 0x80];
 	},
 	//89H 0x00
 	TMOD: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0x89-0x80] = val : STC90C51.SFRs[0X89-0x80];
+		return val !== undefined ? STC90C51.SFRs[0x89 - 0x80] = val : STC90C51.SFRs[0X89 - 0x80];
 	},
 	//8AH 0x00
 	TL0: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0x8A-0x80] = val : STC90C51.SFRs[0X8A-0x80];
+		return val !== undefined ? STC90C51.SFRs[0x8A - 0x80] = val : STC90C51.SFRs[0X8A - 0x80];
 	},
 	//8BH 0X00
 	TL1: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0x8B-0x80] = val : STC90C51.SFRs[0X8B-0x80];
+		return val !== undefined ? STC90C51.SFRs[0x8B - 0x80] = val : STC90C51.SFRs[0X8B - 0x80];
 	},
 	//8CH 0X00
 	TH0: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0x8C-0x80] = val : STC90C51.SFRs[0X8C-0x80];
+		return val !== undefined ? STC90C51.SFRs[0x8C - 0x80] = val : STC90C51.SFRs[0X8C - 0x80];
 	},
 	//8DH 0X00
 	TH1: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0x8D-0x80] = val : STC90C51.SFRs[0X8D-0x80];
+		return val !== undefined ? STC90C51.SFRs[0x8D - 0x80] = val : STC90C51.SFRs[0X8D - 0x80];
 	},
 	//8EH 0X00
 	AUXR: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0x8E-0x80] = val : STC90C51.SFRs[0X8E-0x80];
+		return val !== undefined ? STC90C51.SFRs[0x8E - 0x80] = val : STC90C51.SFRs[0X8E - 0x80];
 	},
 	//90H 0XFF
 	P1: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0x90-0x80] = val : STC90C51.SFRs[0X90-0x80];
+		return val !== undefined ? STC90C51.SFRs[0x90 - 0x80] = val : STC90C51.SFRs[0X90 - 0x80];
 	},
 	//98H 0X00
 	SCON: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0x98-0x80] = val : STC90C51.SFRs[0X98-0x80];
+		return val !== undefined ? STC90C51.SFRs[0x98 - 0x80] = val : STC90C51.SFRs[0X98 - 0x80];
 	},
 	//99H 0X00
 	SBUF: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0x99-0x80] = val : STC90C51.SFRs[0X99-0x80];
+		return val !== undefined ? STC90C51.SFRs[0x99 - 0x80] = val : STC90C51.SFRs[0X99 - 0x80];
 	},
 	//A0H 0XFF
 	P2: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xA0-0x80] = val : STC90C51.SFRs[0XA0-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xA0 - 0x80] = val : STC90C51.SFRs[0XA0 - 0x80];
 	},
 	//A2H 0X00
 	AUXR1: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xA2-0x80] = val : STC90C51.SFRs[0XA2-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xA2 - 0x80] = val : STC90C51.SFRs[0XA2 - 0x80];
 	},
 	//A8H 0X00
 	IE: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xA8-0x80] = val : STC90C51.SFRs[0XA8-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xA8 - 0x80] = val : STC90C51.SFRs[0XA8 - 0x80];
 	},
 	//A9H 0X00
 	SADDR: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xA9-0x80] = val : STC90C51.SFRs[0XA9-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xA9 - 0x80] = val : STC90C51.SFRs[0XA9 - 0x80];
 	},
 	//B0 0XFF
 	P3: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xB0-0x80] = val : STC90C51.SFRs[0XB0-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xB0 - 0x80] = val : STC90C51.SFRs[0XB0 - 0x80];
 	},
 	//B7 0X00
 	IPH: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xB7-0x80] = val : STC90C51.SFRs[0XB7-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xB7 - 0x80] = val : STC90C51.SFRs[0XB7 - 0x80];
 	},
 	//B8 0X00
 	IP: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xB8-0x80] = val : STC90C51.SFRs[0XB8-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xB8 - 0x80] = val : STC90C51.SFRs[0XB8 - 0x80];
 	},
 	//B9 0X00
 	SADEN: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xB9-0x80] = val : STC90C51.SFRs[0XB9-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xB9 - 0x80] = val : STC90C51.SFRs[0XB9 - 0x80];
 	},
 	//C0 0X00
 	XICON: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xC0-0x80] = val : STC90C51.SFRs[0XC0-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xC0 - 0x80] = val : STC90C51.SFRs[0XC0 - 0x80];
 	},
 	//C8 0X00
 	T2CON: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xC8-0x80] = val : STC90C51.SFRs[0XC8-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xC8 - 0x80] = val : STC90C51.SFRs[0XC8 - 0x80];
 	},
 	//C9 0X00
 	T2MOD: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xC9-0x80] = val : STC90C51.SFRs[0XC9-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xC9 - 0x80] = val : STC90C51.SFRs[0XC9 - 0x80];
 	},
 	//CA 0X00
 	RCAP2L: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xCA-0x80] = val : STC90C51.SFRs[0XCA-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xCA - 0x80] = val : STC90C51.SFRs[0XCA - 0x80];
 	},
 	//CB 0X00
 	RCAP2H: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xCB-0x80] = val : STC90C51.SFRs[0XCB-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xCB - 0x80] = val : STC90C51.SFRs[0XCB - 0x80];
 	},
 	//CC 0X00
 	TL2: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xCC-0x80] = val : STC90C51.SFRs[0XCC-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xCC - 0x80] = val : STC90C51.SFRs[0XCC - 0x80];
 	},
 	//CD 0X00
 	TH2: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xCD-0x80] = val : STC90C51.SFRs[0XCD-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xCD - 0x80] = val : STC90C51.SFRs[0XCD - 0x80];
 	},
 	//D0 0X00
 	PSW: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xD0-0x80] = val : STC90C51.SFRs[0XD0-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xD0 - 0x80] = val : STC90C51.SFRs[0XD0 - 0x80];
 	},
 	//E0 0X00
 	ACC: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xE0-0x80] = val : STC90C51.SFRs[0XE0-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xE0 - 0x80] = val : STC90C51.SFRs[0XE0 - 0x80];
 	},
 	//E1 0X00
 	WDT_CONTR: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xE1-0x80] = val : STC90C51.SFRs[0XE1-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xE1 - 0x80] = val : STC90C51.SFRs[0XE1 - 0x80];
 	},
 	//E2 0XFF
 	ISP_DATA: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xE2-0x80] = val : STC90C51.SFRs[0XE2-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xE2 - 0x80] = val : STC90C51.SFRs[0XE2 - 0x80];
 	},
 	//E3 0X00
 	ISP_ADDRH: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xE3-0x80] = val : STC90C51.SFRs[0XE3-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xE3 - 0x80] = val : STC90C51.SFRs[0XE3 - 0x80];
 	},
 	//E4 0X00
 	ISP_ADDRL: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xE4-0x80] = val : STC90C51.SFRs[0XE4-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xE4 - 0x80] = val : STC90C51.SFRs[0XE4 - 0x80];
 	},
 	//E5 0X00
 	ISP_CMD: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xE5-0x80] = val : STC90C51.SFRs[0XE5-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xE5 - 0x80] = val : STC90C51.SFRs[0XE5 - 0x80];
 	},
 	//E6 0X00
 	ISP_TRIG: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xE6-0x80] = val : STC90C51.SFRs[0XE6-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xE6 - 0x80] = val : STC90C51.SFRs[0XE6 - 0x80];
 	},
 	//E7 0X00
 	ISP_CONTR: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xE7-0x80] = val : STC90C51.SFRs[0XE7-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xE7 - 0x80] = val : STC90C51.SFRs[0XE7 - 0x80];
 	},
 	//E8 0X0F
 	P4: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xE8-0x80] = val : STC90C51.SFRs[0XE8-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xE8 - 0x80] = val : STC90C51.SFRs[0XE8 - 0x80];
 	},
 	//F0 0X00
 	B: function(val) {
-		return val !== undefined ? STC90C51.SFRs[0xF0-0x80] = val : STC90C51.SFRs[0XF0-0x80];
+		return val !== undefined ? STC90C51.SFRs[0xF0 - 0x80] = val : STC90C51.SFRs[0XF0 - 0x80];
 	},
 	//获取RN的值
-	RN:function(offset){
+	RN: function(offset) {
 		//根据RS判断Rn地址
 		var RS = 0x18 & STC90C51.PSW(),
 			addr;
@@ -268,7 +268,7 @@ var STC90C51 = {
 		}
 		return STC90C51.RAM[addr];
 	},
-	RI:function(offset){
+	RI: function(offset) {
 		//根据RS判断Rn地址
 		var RS = 0x18 & STC90C51.PSW(),
 			addr;
@@ -336,7 +336,7 @@ var STC90C51 = {
 			}
 		}
 		//校验成功后将数据保存到localStorage中以便下次读取
-		localStorage.setItem("hex",STC90C51.PFM);
+		localStorage.setItem("hex", STC90C51.PFM);
 	},
 	//校验检测数据是否有误
 	isRecord: function(data, validation) {
@@ -372,7 +372,7 @@ var STC90C51 = {
 	P3:B0~B7
 	 */
 	//设置特殊功能寄存器位
-	setSFRsBit:function(addr,bit){
+	setSFRsBit: function(addr, bit) {
 		var abs = parseInt((addr - 0x80) / 8) * 8,
 			rel = addr % 8;
 		if (bit) {
@@ -382,8 +382,8 @@ var STC90C51 = {
 		}
 	},
 	//获取特殊功能寄存器位
-	getSFRsBit:function(addr){
-		var abs = parseInt((addr - 0x80) / 8 ) * 8,
+	getSFRsBit: function(addr) {
+		var abs = parseInt((addr - 0x80) / 8) * 8,
 			rel = addr % 8;
 		return STC90C51.SFRs[abs] >> rel & 0x01;
 	},
@@ -416,12 +416,12 @@ var STC90C51 = {
 		//程序计数器归零
 		STC90C51.PC = 0;
 		//寄存器复位
-		for(var i=0,len=STC90C51.SFRs.length;i<len;i++){
-			STC90C51.SFRs[i]=0;
+		for (var i = 0, len = STC90C51.SFRs.length; i < len; i++) {
+			STC90C51.SFRs[i] = 0;
 		}
 		//RAM复位
-		for(i=0,len=STC90C51.RAM.length;i<len;i++){
-			STC90C51.RAM[i]=0;
+		for (i = 0, len = STC90C51.RAM.length; i < len; i++) {
+			STC90C51.RAM[i] = 0;
 		}
 		STC90C51.P0(0XFF);
 		STC90C51.SP(0X07);
@@ -508,7 +508,7 @@ var STC90C51 = {
 		},
 		//INC A 04 1
 		function() {
-			STC90C51.ACC((STC90C51.ACC() + 1)&0xFF);
+			STC90C51.ACC((STC90C51.ACC() + 1) & 0xFF);
 			STC90C51.PC++;
 			var asStr = "INC A";
 			console.log(asStr);
@@ -522,7 +522,7 @@ var STC90C51 = {
 		function() {
 			var addr = getData16(++STC90C51.PC),
 				data = STC90C51.getDir(addr);
-			STC90C51.setDir(++data&0xFF);
+			STC90C51.setDir(++data & 0xFF);
 			STC90C51.PC++;
 			var asStr = "INC " + addr;
 			console.log(asStr);
@@ -701,23 +701,8 @@ var STC90C51 = {
 		//ADD A,#data 24 2
 		function() {
 			var data = getData16(++STC90C51.PC);
-			STC90C51.ACC(STC90C51.ACC() + data);
+			Add(data);
 			STC90C51.PC++;
-			var a_data = STC90C51.ACC(),
-				result = a_data + data;
-			//如果结果溢出将进位标志位和溢出标志位置1，并使结果为溢出大小
-			if(result>255){
-				result -= 255;
-				STC90C51.PSW(STC90C51.PSW() | 0x84);
-			}else{
-				STC90C51.PSW(STC90C51.PSW() & 0x7B);
-			}
-			//判断进位辅助位是否要置1
-			if((a_data&0x08) && (data&0x08)){
-				STC90C51.PSW(STC90C51.PSW() | 0x40);
-			}else if(((a_data&0x08)|(data&0x08)) && ((a_data&0x04)|(data&0x04))){
-				STC90C51.PSW(STC90C51.PSW() | 0x40);
-			}
 			var asStr = "ADD A," + data;
 			console.log(asStr);
 			var retData = {
@@ -730,22 +715,7 @@ var STC90C51 = {
 		function() {
 			var addr = getData16(++STC90C51.PC),
 				data = STC90C51.getDir(addr);
-			var a_data = STC90C51.ACC(),
-				result = a_data + data;
-			//如果结果溢出将进位标志位和溢出标志位置1，并使结果为溢出大小
-			if(result>255){
-				result -= 255;
-				STC90C51.PSW(STC90C51.PSW() | 0x84);
-			}else{
-				STC90C51.PSW(STC90C51.PSW() & 0x7B);
-			}
-			//判断进位辅助位是否要置1
-			if((a_data&0x08) && (data&0x08)){
-				STC90C51.PSW(STC90C51.PSW() | 0x40);
-			}else if(((a_data&0x08)|(data&0x08)) && ((a_data&0x04)|(data&0x04))){
-				STC90C51.PSW(STC90C51.PSW() | 0x40);
-			}
-			STC90C51.ACC(result);
+			Add(data);
 			STC90C51.PC++;
 			var asStr = "ADD A," + addr;
 			console.log(asStr);
@@ -870,14 +840,7 @@ var STC90C51 = {
 		//ADDC A,#data 34 2
 		function() {
 			var data = getData16(++STC90C51.PC);
-			var CY = STC90C51.PSW() & 0X80;
-			var ret = STC90C51.ACC(STC90C51.ACC() + data + CY);
-			//大于255进位位置1,否则进位位清0
-			if (ret > 255) {
-				STC90C51.PSW(STC90C51.PSW() | 0X80);
-			} else {
-				STC90C51.PSW(STC90C51.PSW() & 0X7F);
-			}
+			Addc(data);
 			STC90C51.PC++;
 			var asStr = "ADDC A,#" + data;
 			console.log(asStr);
@@ -891,13 +854,21 @@ var STC90C51 = {
 		function() {
 			var addr = getData16(++STC90C51.PC),
 				data = STC90C51.getDir(addr);
-			var CY = STC90C51.PSW() & 0X80;
-			var ret = STC90C51.ACC(STC90C51.ACC() + data + CY);
-			//大于255进位位置1,否则进位位清0
-			if (ret > 255) {
-				STC90C51.PSW(STC90C51.PSW() | 0X80);
+			var a_data = STC90C51.ACC(),
+				CY = (STC90C51.PSW() & 0X80) >> 7,
+				result = a_data + data + CY;
+			//如果结果溢出将进位标志位和溢出标志位置1，并使结果为溢出大小
+			if (result > 255) {
+				result -= 255;
+				STC90C51.PSW(STC90C51.PSW() | 0x84);
 			} else {
-				STC90C51.PSW(STC90C51.PSW() & 0X7F);
+				STC90C51.PSW(STC90C51.PSW() & 0x7B);
+			}
+			//判断进位辅助位是否要置1
+			if ((a_data & 0x08) && (data & 0x08)) {
+				STC90C51.PSW(STC90C51.PSW() | 0x40);
+			} else if (((a_data & 0x08) | (data & 0x08)) && ((a_data & 0x04) | (data & 0x04))) {
+				STC90C51.PSW(STC90C51.PSW() | 0x40);
 			}
 			STC90C51.PC++;
 			var asStr = "ADDC A,#" + addr;
@@ -1450,13 +1421,7 @@ var STC90C51 = {
 		//SUBB A,#data 94 2
 		function() {
 			var data = getData16(++STC90C51.PC);
-			var CY = (STC90C51.PSW() & 0X80) >> 7;
-			var ret = STC90C51.ACC(STC90C51.ACC() - data - CY);
-			if (ret < 0) {
-				STC90C51.PSW(STC90C51.PSW() | 0X80);
-				//去掉溢出位
-				STC90C51.ACC(STC90C51.ACC() & 0XFF);
-			}
+			SUBB(data);
 			STC90C51.PC++;
 			var asStr = "SUBB A,#" + data;
 			console.log(asStr);
@@ -1469,14 +1434,8 @@ var STC90C51 = {
 		//SUBB A,direct 95 2
 		function() {
 			var addr = getData16(++STC90C51.PC),
-				data = STC90C51.getDir(addr),
-				CY = (STC90C51.PSW() & 0X80) >> 7;
-			var ret = STC90C51.ACC(STC90C51.ACC() - data - CY);
-			if (ret < 0) {
-				STC90C51.PSW(STC90C51.PSW() | 0X80);
-				//去掉溢出位
-				STC90C51.ACC(STC90C51.ACC() & 0XFF);
-			}
+				data = STC90C51.getDir(addr);
+			SUBB(data);
 			STC90C51.PC++;
 			var asStr = "SUBB A," + addr;
 			console.log(asStr);
@@ -1652,16 +1611,16 @@ var STC90C51 = {
 			var data = getData16(++STC90C51.PC),
 				a = STC90C51.ACC(),
 				rel = getRel(++STC90C51.PC);
-			if(a!=data){
+			if (a != data) {
 				STC90C51.PC += rel + 1;
-				if(data>a){
+				if (data > a) {
 					//进位标志位置1
-					STC90C51.PSW(STC90C51.PSW()|0X80);
-				}else{
+					STC90C51.PSW(STC90C51.PSW() | 0X80);
+				} else {
 					//进位标志位置0
-					STC90C51.PSW(STC90C51.PSW()&0X7F);
+					STC90C51.PSW(STC90C51.PSW() & 0X7F);
 				}
-			}else{
+			} else {
 				STC90C51.PC += 1;
 			}
 			var asStr = "CJNE A,#" + data + "," + rel;
@@ -1678,16 +1637,16 @@ var STC90C51 = {
 				a = STC90C51.ACC(),
 				data = STC90C51.getDir(addr),
 				rel = getRel(++STC90C51.PC);
-			if(data2!=data){
+			if (data2 != data) {
 				STC90C51.PC += rel + 1;
-				if(data>a){
+				if (data > a) {
 					//进位标志位置1
-					STC90C51.PSW(STC90C51.PSW()|0X80);
-				}else{
+					STC90C51.PSW(STC90C51.PSW() | 0X80);
+				} else {
 					//进位标志位置0
-					STC90C51.PSW(STC90C51.PSW()&0X7F);
+					STC90C51.PSW(STC90C51.PSW() & 0X7F);
 				}
-			}else{
+			} else {
 				STC90C51.PC += 1;
 			}
 			var asStr = "CJNE A," + addr + "," + rel;
@@ -2003,7 +1962,7 @@ var STC90C51 = {
 		Ri_MOVX(1),
 		//CPL A F4 1
 		function() {
-			STC90C51.ACC((~STC90C51.ACC())&0x00ff);
+			STC90C51.ACC((~STC90C51.ACC()) & 0x00ff);
 			STC90C51.PC++;
 			var asStr = "CPL A";
 			console.log(asStr);
@@ -2085,6 +2044,84 @@ function ACALL() {
 	return retData;
 }
 
+//加法不含进位
+function Add(data) {
+	// var ret = STC90C51.ACC(STC90C51.ACC() + data);
+	var a_data = STC90C51.ACC(),
+		result = a_data + data;
+	debugger;
+	STC90C51.ACC(result & 0xff);
+	//如果结果溢出将进位标志位和溢出标志位置1，并使结果为溢出大小
+	if (result > 255 || result < -255) {
+		STC90C51.PSW(STC90C51.PSW() | 0x04);
+	} else {
+		STC90C51.PSW(STC90C51.PSW() & 0xFB);
+	}
+	//判断进位辅助位是否要置1
+	if (a_data & 0x0f > result & 0x0f && data & 0x0f > result & 0x0f) {
+		STC90C51.PSW(STC90C51.PSW() | 0x40);
+	} else {
+		STC90C51.PSW(STC90C51.PSW() & 0XBF);
+	}
+	//判断是否有进位
+	if (a_data & 0xff > result & 0xff && data & 0xff > result & 0xff) {
+		STC90C51.PSW(STC90C51.PSW() | 0X80);
+	} else {
+		STC90C51.PSW(STC90C51.PSW() & 0X7F);
+	}
+}
+//加法含进位
+function Addc(data) {
+	var a_data = STC90C51.ACC(),
+		CY = (STC90C51.PSW() & 0X80) >> 7,
+		result = a_data + data + CY;
+	//如果结果溢出将进位标志位和溢出标志位置1，并使结果为溢出大小
+	if (result > 255 || result < -255) {
+		STC90C51.PSW(STC90C51.PSW() | 0x04);
+	} else {
+		STC90C51.PSW(STC90C51.PSW() & 0xFB);
+	}
+	STC90C51.ACC(result & 0xff);
+	//判断进位辅助位是否要置1
+	if (a_data & 0x0f > result & 0x0f && data & 0x0f > result & 0x0f) {
+		STC90C51.PSW(STC90C51.PSW() | 0x40);
+	} else {
+		STC90C51.PSW(STC90C51.PSW() & 0XBF);
+	}
+	//判断是否有进位
+	if (a_data & 0xff > result & 0xff && data & 0xff > result & 0xff) {
+		STC90C51.PSW(STC90C51.PSW() | 0X80);
+	} else {
+		STC90C51.PSW(STC90C51.PSW() & 0X7F);
+	}
+}
+//借位减法
+function Subb(data) {
+	var CY = (STC90C51.PSW() & 0X80) >> 7,
+		a_data = STC90C51.ACC(),
+		result = a_data - CY - data;
+	STC90C51.ACC(result & 0XFF);
+	//判断是否溢出
+	if (result > 255 || result < -255) {
+		//溢出标志位置1
+		STC90C51.PSW(STC90C51.PSW() | 0X04);
+	} else {
+		STC90C51.PSW(STC90C51.PSW() & 0XFB);
+	}
+	//判断B3是否有借位
+	if (a_data & 0x0f > data & 0x0f) {
+		STC90C51.PSW(STC90C51.PSW() | 0x40);
+	} else {
+		STC90C51.PSW(STC90C51.PSW() & 0XBF);
+	}
+	//判断最高位是否有借位
+	if (a_data & 0xFF > data & 0XFF) {
+		STC90C51.PSW(STC90C51.PSW() | 0X80);
+	} else {
+		STC90C51.PSW(STC90C51.PSW() & 0X7F);
+	}
+}
+
 function R_Factory(key) {
 	//获得地址
 	function getAddr(offset) {
@@ -2111,48 +2148,6 @@ function R_Factory(key) {
 	//根据地址得到数据
 	function getData(addr) {
 		return STC90C51.RAM[addr];
-	}
-	//加法不含进位
-	function Add(data) {
-		var ret = STC90C51.ACC(STC90C51.ACC() + data);
-		var a_data = STC90C51.ACC(),
-				result = a_data + data;
-			//如果结果溢出将进位标志位和溢出标志位置1，并使结果为溢出大小
-			if(result>255){
-				result -= 255;
-				STC90C51.PSW(STC90C51.PSW() | 0x84);
-			}else{
-				STC90C51.PSW(STC90C51.PSW() & 0x7B);
-			}
-			//判断进位辅助位是否要置1
-			if((a_data&0x08) && (data&0x08)){
-				STC90C51.PSW(STC90C51.PSW() | 0x40);
-			}else if(((a_data&0x08)|(data&0x08)) && ((a_data&0x04)|(data&0x04))){
-				STC90C51.PSW(STC90C51.PSW() | 0x40);
-			}
-	}
-	//加法含进位
-	function Addc(data) {
-		var CY = (STC90C51.PSW() & 0X80) >> 7;
-		var ret = STC90C51.ACC(STC90C51.ACC() + data + CY);
-		//大于255进位位置1,否则进位位清0
-		if (ret > 255) {
-			STC90C51.ACC(STC90C51.ACC() & 0X00FF);
-			STC90C51.PSW(STC90C51.PSW() | 0X80);
-		} else {
-			STC90C51.PSW(STC90C51.PSW() & 0X7F);
-		}
-	}
-	//借位减法
-	function Subb(data) {
-		var CY = (STC90C51.PSW() & 0X80) >> 7;
-		var ret = STC90C51.ACC(STC90C51.ACC() - data - CY);
-		if (ret < 0) {
-			STC90C51.ACC(STC90C51.ACC() & 0X00FF);
-			STC90C51.PSW(STC90C51.PSW() | 0X80);
-		} else {
-			STC90C51.PSW(STC90C51.PSW() & 0X7F);
-		}
 	}
 	switch (key) {
 		case "Rn_ADDC":
@@ -2420,9 +2415,9 @@ function R_Factory(key) {
 				return function() {
 					var addr = getAddr(offset),
 						data = STC90C51.RAM[addr];
-					if(++data>255){
+					if (++data > 255) {
 						STC90C51.RAM[addr] = 0;
-					}else{
+					} else {
 						STC90C51.RAM[addr] = data;
 					}
 					STC90C51.PC++;
@@ -2504,16 +2499,16 @@ function R_Factory(key) {
 					var data = getData(getData(getAddr(offset))),
 						data2 = getData16(++STC90C51.PC),
 						rel = getRel(++STC90C51.PC);
-					if(data2!=data){
+					if (data2 != data) {
 						STC90C51.PC += rel + 1;
-						if(data<data2){
+						if (data < data2) {
 							//进位标志位置1
-							STC90C51.PSW(STC90C51.PSW()|0X80);
-						}else{
+							STC90C51.PSW(STC90C51.PSW() | 0X80);
+						} else {
 							//进位标志位置0
-							STC90C51.PSW(STC90C51.PSW()&0X7F);
+							STC90C51.PSW(STC90C51.PSW() & 0X7F);
 						}
-					}else{
+					} else {
 						STC90C51.PC += 1;
 					}
 					var asStr = "CJNE @R" + offset + ",#" + data2 + "," + rel;
@@ -2531,16 +2526,16 @@ function R_Factory(key) {
 					var data = getData(getAddr(offset)),
 						data2 = getData16(++STC90C51.PC),
 						rel = getRel(++STC90C51.PC);
-					if(data2!=data){
+					if (data2 != data) {
 						STC90C51.PC += rel + 1;
-						if(data<data2){
+						if (data < data2) {
 							//进位标志位置1
-							STC90C51.PSW(STC90C51.PSW()|0X80);
-						}else{
+							STC90C51.PSW(STC90C51.PSW() | 0X80);
+						} else {
 							//进位标志位置0
-							STC90C51.PSW(STC90C51.PSW()&0X7F);
+							STC90C51.PSW(STC90C51.PSW() & 0X7F);
 						}
-					}else{
+					} else {
 						STC90C51.PC += 1;
 					}
 					var asStr = "CJNE R" + offset + ",#" + data2 + "," + rel;
