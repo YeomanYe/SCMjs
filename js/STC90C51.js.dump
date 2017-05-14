@@ -496,7 +496,7 @@ var STC90C51 = {
 		//RR 03 1
 		function() {
 			//循环右移一位
-			STC90C51.ACC(STC90C51.ACC() >> 1 | STC90C51.ACC() << 7);
+			STC90C51.ACC((STC90C51.ACC() >> 1 | STC90C51.ACC() << 7) & 0xFF);
 			STC90C51.PC++;
 			var asStr = "RR A";
 			console.log(asStr);
@@ -593,12 +593,15 @@ var STC90C51 = {
 			};
 			return retData;
 		},
-		//RCC A 13 1
+		//RRC A 13 1
 		function() {
-			var temp = STC90C51.ACC();
-			STC90C51.ACC((temp & 0x80) | (temp & 0xbf) | (temp << 6));
+			var temp = STC90C51.ACC(),
+				newC = temp&0x01,
+				oldC = STC90C51.PSW() & 0X80;
+			STC90C51.ACC(((oldC << 7 ) | (temp >> 1)) & 0XFF);
+			STC90C51.PSW(STC90C51.PSW() | (newC << 7));
 			STC90C51.PC++;
-			var asStr = "RCC A";
+			var asStr = "RRC A";
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -689,7 +692,7 @@ var STC90C51 = {
 		//RL A 23 1
 		function() {
 			var temp = STC90C51.ACC();
-			STC90C51.ACC((temp << 1) | (temp >> 7) & 0xff);
+			STC90C51.ACC(((temp << 1) | (temp >> 7)) & 0x00FF);
 			STC90C51.PC++;
 			var asStr = "RL A";
 			console.log(asStr);
@@ -718,7 +721,7 @@ var STC90C51 = {
 				data = STC90C51.getDir(addr);
 			Add(data);
 			STC90C51.PC++;
-			var asStr = "ADD A," + addr;
+			var asStr = "ADD A," + getStr16(addr);
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -827,8 +830,11 @@ var STC90C51 = {
 		},
 		//RLC A 33 1
 		function() {
-			var temp = STC90C51.ACC();
-			STC90C51.ACC((temp >> 6 & 0X01) | (temp << 1 & 0x007e) | (temp & 0x80));
+			var temp = STC90C51.ACC(),
+				oldC = STC90C51.PSW() & 0X80,
+				newC = (temp & 0x80) >> 7;
+			STC90C51.ACC(((oldC >> 7) | (temp << 1)) & 0XFF);
+			STC90C51.PSW(STC90C51.PSW() | (newC << 7));
 			STC90C51.PC++;
 			var asStr = "RLC A";
 			console.log(asStr);
@@ -1245,7 +1251,7 @@ var STC90C51 = {
 				data = getData16(++STC90C51.PC);
 			STC90C51.setDir(addr, data);
 			STC90C51.PC++;
-			var asStr = "MOV " + addr + ",#" + data;
+			var asStr = "MOV " + addr.toString(16) + ",#" + data;
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1422,7 +1428,7 @@ var STC90C51 = {
 		//SUBB A,#data 94 2
 		function() {
 			var data = getData16(++STC90C51.PC);
-			SUBB(data);
+			Subb(data);
 			STC90C51.PC++;
 			var asStr = "SUBB A,#" + data;
 			console.log(asStr);
@@ -1800,6 +1806,7 @@ var STC90C51 = {
 		},
 		//SETB C D3 1
 		function() {
+			debugger;
 			STC90C51.PSW(STC90C51.PSW() | 0X80);
 			STC90C51.PC++;
 			var asStr = "SETB C";
@@ -1907,7 +1914,8 @@ var STC90C51 = {
 		},
 		//MOV A,direct E5 2
 		function() {
-			var addr = STC90C51.PFM[++STC90C51.PC],
+			debugger;
+			var addr = getData16(++STC90C51.PC),
 				data = STC90C51.getDir(addr);
 			STC90C51.ACC(data);
 			STC90C51.PC++;
@@ -1979,7 +1987,7 @@ var STC90C51 = {
 				addr = getData16(++STC90C51.PC);
 			STC90C51.setDir(addr, a);
 			STC90C51.PC++;
-			var asStr = "MOV " + addr + ",A";
+			var asStr = "MOV " + addr.toString(16) + ",A";
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -2052,7 +2060,7 @@ function Add(data) {
 		result = a_data + data;
 	STC90C51.ACC(result & 0xff);
 	//如果结果溢出将进位标志位和溢出标志位置1，并使结果为溢出大小
-	if (result > 255 || result < -255) {
+	if ((result & 0xFFFF) > 255) {
 		STC90C51.PSW(STC90C51.PSW() | 0x04);
 	} else {
 		STC90C51.PSW(STC90C51.PSW() & 0xFB);
@@ -2076,7 +2084,7 @@ function Addc(data) {
 		CY = (STC90C51.PSW() & 0X80) >> 7,
 		result = a_data + data + CY;
 	//如果结果溢出将进位标志位和溢出标志位置1，并使结果为溢出大小
-	if (result > 255 || result < -255) {
+	if ((result & 0xFFFF) > 255 ) {
 		STC90C51.PSW(STC90C51.PSW() | 0x04);
 	} else {
 		STC90C51.PSW(STC90C51.PSW() & 0xFB);
@@ -2097,25 +2105,26 @@ function Addc(data) {
 }
 //借位减法
 function Subb(data) {
+	debugger;
 	var CY = (STC90C51.PSW() & 0X80) >> 7,
 		a_data = STC90C51.ACC(),
 		result = a_data - CY - data;
 	STC90C51.ACC(result & 0XFF);
 	//判断是否溢出
-	if (result > 255 || result < -255) {
+	if ((result&0xFFFF) > 255) {
 		//溢出标志位置1
 		STC90C51.PSW(STC90C51.PSW() | 0X04);
 	} else {
 		STC90C51.PSW(STC90C51.PSW() & 0XFB);
 	}
 	//判断B3是否有借位
-	if (a_data & 0x0f > data & 0x0f) {
+	if (a_data & 0x0f < data & 0x0f) {
 		STC90C51.PSW(STC90C51.PSW() | 0x40);
 	} else {
 		STC90C51.PSW(STC90C51.PSW() & 0XBF);
 	}
 	//判断最高位是否有借位
-	if (a_data & 0xFF > data & 0XFF) {
+	if (a_data & 0xFF < data & 0XFF) {
 		STC90C51.PSW(STC90C51.PSW() | 0X80);
 	} else {
 		STC90C51.PSW(STC90C51.PSW() & 0X7F);
@@ -2604,12 +2613,13 @@ function R_Factory(key) {
 		case "Rn_DJNZ":
 			return function(offset) {
 				return function() {
+					debugger;
 					var addr = getAddr(offset),
 						data = getData(addr),
 						rel = getRel(++STC90C51.PC);
 					STC90C51.RAM[addr] = --data;
 					// debugger;
-					STC90C51.PC += (data !== 0) ? rel + 1 : 1;
+					STC90C51.PC += data ? rel + 1 : 1;
 					var asStr = "DJNZ R" + offset + "," + rel;
 					console.log(asStr);
 					var retData = {
@@ -2714,6 +2724,10 @@ function R_Factory(key) {
 				};
 			};
 	}
+}
+//得到16进制字符
+function getStr16(data){
+	return data.toString(16).toUpperCase();
 }
 //得到16进制数据，PFM中
 function getData16(addr) {

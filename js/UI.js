@@ -64,14 +64,31 @@ function draw() {
 
 //绘制单片机
 function drawSCM() {
-    var scmWidth = 211,
+    //图片加载方案
+    /*var scmWidth = 211,
         scmHeight = 403;
     //加载SCM图片
     var img = new Image();
     img.src = "img/SCM.png";
     img.onload = function() {
         ctx.drawImage(img, canWidth / 2 - scmWidth / 2 - 100, 180, scmWidth, scmHeight);
-    };
+    };*/
+    //绘制方案
+    var scmWidth = 200,
+        scmHeight = 100,
+        scmX = ( canWidth - scmWidth ) /2,
+        scmY = ( canHeight - scmHeight) /2;
+    //绘制
+    ctx.beginPath();
+    ctx.fillStyle = "#000000";
+    ctx.fillRect(scmX,scmY,scmWidth,scmHeight);
+    ctx.closePath();
+
+    var offset = 30;
+    ctx.font = offset + "px Arial";
+    ctx.textAlign = "left";
+    ctx.fillStyle = "#606060";
+    ctx.fillText("STC90C51", scmX + offset, scmY + scmHeight/2 );
 }
 
 //绘制LED灯
