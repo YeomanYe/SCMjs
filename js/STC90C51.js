@@ -2066,13 +2066,13 @@ function Add(data) {
 		STC90C51.PSW(STC90C51.PSW() & 0xFB);
 	}
 	//判断进位辅助位是否要置1
-	if (a_data & 0x0f > result & 0x0f && data & 0x0f > result & 0x0f) {
+	if ((a_data & 0x0f) > (result & 0x0f) && (data & 0x0f) > (result & 0x0f)) {
 		STC90C51.PSW(STC90C51.PSW() | 0x40);
 	} else {
 		STC90C51.PSW(STC90C51.PSW() & 0XBF);
 	}
 	//判断是否有进位
-	if (a_data & 0xff > result & 0xff && data & 0xff > result & 0xff) {
+	if ((a_data & 0xff) > (result & 0xff) && (data & 0xff) > (result & 0xff)) {
 		STC90C51.PSW(STC90C51.PSW() | 0X80);
 	} else {
 		STC90C51.PSW(STC90C51.PSW() & 0X7F);
@@ -2091,13 +2091,13 @@ function Addc(data) {
 	}
 	STC90C51.ACC(result & 0xff);
 	//判断进位辅助位是否要置1
-	if (a_data & 0x0f > result & 0x0f && data & 0x0f > result & 0x0f) {
+	if ((a_data & 0x0f) > (result & 0x0f) && (data & 0x0f) > (result & 0x0f)) {
 		STC90C51.PSW(STC90C51.PSW() | 0x40);
 	} else {
 		STC90C51.PSW(STC90C51.PSW() & 0XBF);
 	}
 	//判断是否有进位
-	if (a_data & 0xff > result & 0xff && data & 0xff > result & 0xff) {
+	if ((a_data & 0xff) > (result & 0xff) && (data & 0xff) > (result & 0xff)) {
 		STC90C51.PSW(STC90C51.PSW() | 0X80);
 	} else {
 		STC90C51.PSW(STC90C51.PSW() & 0X7F);
@@ -2118,13 +2118,13 @@ function Subb(data) {
 		STC90C51.PSW(STC90C51.PSW() & 0XFB);
 	}
 	//判断B3是否有借位
-	if (a_data & 0x0f < data & 0x0f) {
+	if ((a_data & 0x0f) < (data & 0x0f)) {
 		STC90C51.PSW(STC90C51.PSW() | 0x40);
 	} else {
 		STC90C51.PSW(STC90C51.PSW() & 0XBF);
 	}
 	//判断最高位是否有借位
-	if (a_data & 0xFF < data & 0XFF) {
+	if ((a_data & 0xFF) < ((data & 0XFF) + CY )) {
 		STC90C51.PSW(STC90C51.PSW() | 0X80);
 	} else {
 		STC90C51.PSW(STC90C51.PSW() & 0X7F);
