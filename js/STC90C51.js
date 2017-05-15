@@ -525,7 +525,7 @@ var STC90C51 = {
 			debugger;
 			STC90C51.setDir(addr,++data & 0xFF);
 			STC90C51.PC++;
-			var asStr = "INC " + addr;
+			var asStr = "INC " + getStr16(addr);
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -627,7 +627,7 @@ var STC90C51 = {
 				data = STC90C51.getDir(addr);
 			STC90C51.setDir(addr, data - 1);
 			STC90C51.PC++;
-			var asStr = "DEC " + addr;
+			var asStr = "DEC " + getStr16(addr);
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -878,7 +878,7 @@ var STC90C51 = {
 				STC90C51.PSW(STC90C51.PSW() | 0x40);
 			}
 			STC90C51.PC++;
-			var asStr = "ADDC A,#" + addr;
+			var asStr = "ADDC A," + getStr16(addr);
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -928,7 +928,7 @@ var STC90C51 = {
 				data = STC90C51.getDir(addr);
 			STC90C51.setDir(addr, a | data);
 			STC90C51.PC++;
-			var asStr = "ORL " + addr + ",A";
+			var asStr = "ORL " + getStr16(addr) + ",A";
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -943,7 +943,7 @@ var STC90C51 = {
 				dataDir = STC90C51.getDir(addr);
 			STC90C51.setDir(addr, data | dataDir);
 			STC90C51.PC++;
-			var asStr = "ORL " + addr + ",#" + data;
+			var asStr = "ORL " + getStr16(addr) + ",#" + data;
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -972,7 +972,7 @@ var STC90C51 = {
 				data = STC90C51.getDir(addr);
 			STC90C51.ACC(a | data);
 			STC90C51.PC++;
-			var asStr = "ORL A," + addr;
+			var asStr = "ORL A," + getStr16(addr);
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1022,7 +1022,7 @@ var STC90C51 = {
 				dirData = STC90C51.getDir(addr);
 			STC90C51.setDir(addr, a & dirData);
 			STC90C51.PC++;
-			var asStr = "ANL " + addr + ",A";
+			var asStr = "ANL " + getStr16(addr) + ",A";
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1037,7 +1037,7 @@ var STC90C51 = {
 				dirData = STC90C51.getDir(addr);
 			STC90C51.setDir(addr, data & dirData);
 			STC90C51.PC++;
-			var asStr = "ANL " + addr + ",#" + data;
+			var asStr = "ANL " + getStr16(addr) + ",#" + data;
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1066,7 +1066,7 @@ var STC90C51 = {
 				data = STC90C51.getDir(addr);
 			STC90C51.ACC(a & data);
 			STC90C51.PC++;
-			var asStr = "ANL A," + addr;
+			var asStr = "ANL A," + getStr16(addr);
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1116,7 +1116,7 @@ var STC90C51 = {
 				dirData = STC90C51.getDir(addr);
 			STC90C51.setDir(addr, dirData ^ a);
 			STC90C51.PC++;
-			var asStr = "XRL " + addr + ",A";
+			var asStr = "XRL " + getStr16(addr) + ",A";
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1131,7 +1131,7 @@ var STC90C51 = {
 				dirData = STC90C51.getDir(addr);
 			STC90C51.setDir(addr, data ^ dirData);
 			STC90C51.PC++;
-			var asStr = "XRL " + addr + ",#" + data;
+			var asStr = "XRL " + getStr16(addr) + ",#" + data;
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1160,7 +1160,7 @@ var STC90C51 = {
 				data = STC90C51.getDir(addr);
 			STC90C51.ACC(a ^ data);
 			STC90C51.PC++;
-			var asStr = "XRL A," + addr;
+			var asStr = "XRL A," + getStr16(addr);
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1251,7 +1251,7 @@ var STC90C51 = {
 				data = getData16(++STC90C51.PC);
 			STC90C51.setDir(addr, data);
 			STC90C51.PC++;
-			var asStr = "MOV " + addr.toString(16) + ",#" + data;
+			var asStr = "MOV " + getStr16(addr) + ",#" + data;
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1344,7 +1344,7 @@ var STC90C51 = {
 				data = STC90C51.getDir(addr2);
 			STC90C51.setDir(addr1, data);
 			STC90C51.PC++;
-			var asStr = "MOV " + addr1 + "," + addr2;
+			var asStr = "MOV " + getStr16(addr1) + "," + getStr16(addr2);
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1444,7 +1444,7 @@ var STC90C51 = {
 				data = STC90C51.getDir(addr);
 			SUBB(data);
 			STC90C51.PC++;
-			var asStr = "SUBB A," + addr;
+			var asStr = "SUBB A," + getStr16(addr);
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1656,7 +1656,7 @@ var STC90C51 = {
 			} else {
 				STC90C51.PC += 1;
 			}
-			var asStr = "CJNE A," + addr + "," + rel;
+			var asStr = "CJNE A," + getStr16(addr) + "," + rel;
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1690,7 +1690,7 @@ var STC90C51 = {
 				data = STC90C51.getDir(addr);
 			STC90C51.RAM[STC90C51.SP(STC90C51.SP() + 1)] = data;
 			STC90C51.PC++;
-			var asStr = "PUSH " + addr;
+			var asStr = "PUSH " + getStr16(addr);
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1746,7 +1746,7 @@ var STC90C51 = {
 			STC90C51.ACC(data);
 			STC90C51.setDir(addr, a);
 			STC90C51.PC++;
-			var asStr = "XHR A," + addr;
+			var asStr = "XHR A," + getStr16(addr);
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1781,7 +1781,7 @@ var STC90C51 = {
 			STC90C51.setDir(addr, STC90C51.RAM[sp]);
 			STC90C51.SP(sp - 1);
 			STC90C51.PC++;
-			var asStr = "POP " + addr;
+			var asStr = "POP " + getStr16(addr);
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1847,7 +1847,7 @@ var STC90C51 = {
 				rel = getRel(++STC90C51.PC);
 			STC90C51.setDir(addr, --data);
 			STC90C51.PC += data ? (rel + 1) : 1;
-			var asStr = "DJNZ " + addr + "," + rel;
+			var asStr = "DJNZ " + getStr16(addr) + "," + rel;
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1919,7 +1919,7 @@ var STC90C51 = {
 				data = STC90C51.getDir(addr);
 			STC90C51.ACC(data);
 			STC90C51.PC++;
-			var asStr = "MOV A," + addr;
+			var asStr = "MOV A," + getStr16(addr);
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1987,7 +1987,7 @@ var STC90C51 = {
 				addr = getData16(++STC90C51.PC);
 			STC90C51.setDir(addr, a);
 			STC90C51.PC++;
-			var asStr = "MOV " + addr.toString(16) + ",A";
+			var asStr = "MOV " + getStr16(addr) + ",A";
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -2072,7 +2072,7 @@ function Add(data) {
 		STC90C51.PSW(STC90C51.PSW() & 0XBF);
 	}
 	//判断是否有进位
-	if ((a_data & 0xff) > (result & 0xff) && (data & 0xff) > (result & 0xff)) {
+	if (a_data  > result && data > result ) {
 		STC90C51.PSW(STC90C51.PSW() | 0X80);
 	} else {
 		STC90C51.PSW(STC90C51.PSW() & 0X7F);
@@ -2097,7 +2097,7 @@ function Addc(data) {
 		STC90C51.PSW(STC90C51.PSW() & 0XBF);
 	}
 	//判断是否有进位
-	if ((a_data & 0xff) > (result & 0xff) && (data & 0xff) > (result & 0xff)) {
+	if (a_data > result && data > result) {
 		STC90C51.PSW(STC90C51.PSW() | 0X80);
 	} else {
 		STC90C51.PSW(STC90C51.PSW() & 0X7F);
@@ -2124,7 +2124,7 @@ function Subb(data) {
 		STC90C51.PSW(STC90C51.PSW() & 0XBF);
 	}
 	//判断最高位是否有借位
-	if ((a_data & 0xFF) < ((data & 0XFF) + CY )) {
+	if (a_data < data + CY ) {
 		STC90C51.PSW(STC90C51.PSW() | 0X80);
 	} else {
 		STC90C51.PSW(STC90C51.PSW() & 0X7F);
@@ -2493,7 +2493,7 @@ function R_Factory(key) {
 						data = STC90C51.getDir(dir);
 					STC90C51.RAM[addr] = data;
 					STC90C51.PC++;
-					var asStr = "MOV R" + offset + "," + dir;
+					var asStr = "MOV R" + offset + "," + getStr16(dir);
 					console.log(asStr);
 					var retData = {
 						asStr: asStr,
@@ -2727,7 +2727,7 @@ function R_Factory(key) {
 }
 //得到16进制字符
 function getStr16(data){
-	return data.toString(16).toUpperCase();
+	return data.toString(16).toUpperCase() + "H";
 }
 //得到16进制数据，PFM中
 function getData16(addr) {
