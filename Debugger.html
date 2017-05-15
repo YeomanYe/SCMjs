@@ -29,6 +29,11 @@
         list-style: none;
     }
     
+    #code {
+        height: 500px;
+        overflow: auto;
+    }
+
     #code li {
         width: 50%;
         position: relative;
@@ -115,15 +120,12 @@
                 <legend>control</legend>
                 <input type="file" name="file" id="file" style="display: none" />
                 <input type="button" id="upload" value="Upload" onclick="document.getElementById('file').click();" title="加载hex文件">
-                <!-- <input type="text" id="breakpoint" placeholder="breakpoint line">
-                <input type="button" id="addBreak" value="AddBreak" title="添加断点"> -->
                 <input type="button" id="step" value="Step" title="单步">
                 <input type="button" id="pause" value="Pause" title="暂停">
                 <input type="button" id="run" value="Run" title="运行">
                 <input type="button" id="clearAll" value="clearAll" title="清除全部断点">
                 <input type="button" id="disableAll" value="disableAll" title="禁用全部断点">
                 <input type="button" id="enableAll" value="enableAll" title="启用全部断点">
-                <!-- <input type="button" id="run" value=""> -->
             </fieldset>
         </div>
         <div id="right">

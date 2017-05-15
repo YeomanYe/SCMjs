@@ -1379,7 +1379,7 @@ var STC90C51 = {
 			STC90C51.DPL(datal);
 			STC90C51.DPH(datah);
 			STC90C51.PC++;
-			var asStr = "MOV DPTR,#" + (datah << 8 | datal);
+			var asStr = "MOV DPTR,#" + ((datah << 8) | datal);
 			console.log(asStr);
 			var retData = {
 				asStr: asStr,
@@ -1413,8 +1413,9 @@ var STC90C51 = {
 			var dpl = STC90C51.DPL(),
 				dph = STC90C51.DPH(),
 				a = STC90C51.ACC();
-			var addr = a + (dph << 8 + dpl),
-				data = STC90C51.RAM[addr];
+			debugger;
+			var addr = a + (dph << 8 | dpl),
+				data = STC90C51.PFM[addr];
 			STC90C51.ACC(data);
 			STC90C51.PC++;
 			var asStr = "MOVC A,@A+DPTR";
