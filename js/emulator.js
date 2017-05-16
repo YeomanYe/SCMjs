@@ -14,7 +14,7 @@ window.onload = function () {
         pauseBtn = document.getElementById("pause"),
         stopBtn = document.getElementById("stop"),
         fileBtn = document.getElementById("file");
-    fileBtn.addEventListener('cnange',fileHander,false);
+    fileBtn.addEventListener('change',fileHander,false);
     
     stepBtn.onclick = step;
     runBtn.onclick = run;
@@ -52,6 +52,7 @@ var LED1,LED2,LED3,LED4,LED5,LED6,LED7,LED0;
 
 //文件变化处理函数
 function fileHander(evt){
+    debugger;
     var files = evt.target.files;
     if (files[0]) {
         var reader = new FileReader();
@@ -74,7 +75,7 @@ function pinBound(portElem){
         portNum = expression.exec(portId)[1],
         pinNum = expression.exec(portId)[2];
     localStorage.setItem(portId,portValue);
-    var temp = function(){debugger;return STC90C51.getSFRsBit(0x80+parseInt(portNum)*16+parseInt(pinNum));};
+    var temp = function(){return STC90C51.getSFRsBit(0x80+parseInt(portNum)*16+parseInt(pinNum));};
     switch(portValue.toUpperCase()){
         case "A":digA=temp;break;
         case "B":digB=temp;break;

@@ -26,14 +26,16 @@
 }());
 
 //canvas绘制环境
-var ctx;
+var ctx,ctx2;
 //canvas宽高
 var canWidth, canHeight;
 
 //canvas初始化
 function canvasInit() {
-    var canvas = document.getElementById("canvas");
+    var canvas = document.getElementById("canvas"),
+        canvas2 = document.getElementById("canvas2");
     ctx = canvas.getContext("2d");
+    ctx2 = canvas2.getContext("2d");
     canWidth = canvas.offsetWidth;
     canHeight = canvas.offsetHeight;
 }
@@ -47,17 +49,29 @@ function drawBack() {
 }
 
 function draw() {
-    // ctx.clearRect(0,0,canWidth,canHeight);
+    ctx.clearRect(0,0,canWidth,canHeight);
     drawBack();
     drawSCM();
-    drawDigit(0xff, 0x00);
-    var ledPin = (LED0() << 0 | LED1() << 1 | LED2() << 2 | LED3() << 3 | LED4() << 4 | LED5() << 5 | LED6() << 6 | LED7() << 7);
+    var seg = 0xFF,
+        bit = 0x00;
+    if(typeof digA === "function"){
+        bit = digA() << 0 | digB() << 1 | digC() << 2 | digD() << 3 | digE() << 4 | digF() << 5 | digG() << 6 | digDP() <<7 ;
+    }
+    if(typeof dig1 === "function"){
+        seg = dig1() << 0 | dig2() <<1 | dig3() <<2 | dig4() <<3 | dig5() <<4 | dig6() <<5 | dig7() <<6 | dig8() <<7;
+    }
+    drawDigit(~seg, bit);
+    var ledPin = 0XFF;
+    if(typeof LED0 === "function"){
+        ledPin = (LED0() << 0 | LED1() << 1 | LED2() << 2 | LED3() << 3 | LED4() << 4 | LED5() << 5 | LED6() << 6 | LED7() << 7);
+    }
     console.log("%cLED:"+ledPin,"color:green");
     console.log("%cP0:"+STC90C51.P0(),"color:green");
     console.log("%cP1:"+STC90C51.P1(),"color:green");
     console.log("%cP2:"+STC90C51.P2(),"color:green");
     console.log("%cP3:"+STC90C51.P3(),"color:green");
     drawLED(ledPin);
+
     requestAnimationFrame(draw);
 }
 
@@ -65,16 +79,16 @@ function draw() {
 //绘制单片机
 function drawSCM() {
     //图片加载方案
-    /*var scmWidth = 211,
+    var scmWidth = 211,
         scmHeight = 403;
     //加载SCM图片
     var img = new Image();
     img.src = "img/SCM.png";
     img.onload = function() {
-        ctx.drawImage(img, canWidth / 2 - scmWidth / 2 - 100, 180, scmWidth, scmHeight);
-    };*/
+        ctx2.drawImage(img, canWidth / 2 - scmWidth / 2 - 100, 180, scmWidth, scmHeight);
+    };
     //绘制方案
-    var scmWidth = 200,
+    /*var scmWidth = 200,
         scmHeight = 100,
         scmX = ( canWidth - scmWidth ) /2,
         scmY = ( canHeight - scmHeight) /2;
@@ -88,7 +102,7 @@ function drawSCM() {
     ctx.font = offset + "px Arial";
     ctx.textAlign = "left";
     ctx.fillStyle = "#606060";
-    ctx.fillText("STC90C51", scmX + offset, scmY + scmHeight/2 );
+    ctx.fillText("STC90C51", scmX + offset, scmY + scmHeight/2 );*/
 }
 
 //绘制LED灯
@@ -184,30 +198,43 @@ function drawDigit(seg, bit) {
         ctx.lineCap = "miter";
         ctx.lineJoin = "butt";
 
+        ctx.beginPath();
         ctx.strokeStyle = (bit & 0x01) ? "#00FFFF" : "#00007D";
         ctx.moveTo(0, 0);
         ctx.lineTo(dLength, 0);
+        ctx.stroke();
 
+        ctx.beginPath();
         ctx.strokeStyle = (bit & 0x02) ? "#00FFFF" : "#00007D";
         ctx.moveTo(dLength, 0);
         ctx.lineTo(dLength, dLength);
+        ctx.stroke();
 
+        ctx.beginPath();
         ctx.strokeStyle = (bit & 0x04) ? "#00FFFF" : "#00007D";
         ctx.moveTo(dLength, dLength);
         ctx.lineTo(dLength, 2 * dLength);
+        ctx.stroke();
 
+        ctx.beginPath();
         ctx.strokeStyle = (bit & 0x08) ? "#00FFFF" : "#00007D";
         ctx.moveTo(dLength, 2 * dLength);
         ctx.lineTo(0, 2 * dLength);
+        ctx.stroke();
 
+        ctx.beginPath();
         ctx.strokeStyle = (bit & 0x10) ? "#00FFFF" : "#00007D";
         ctx.moveTo(0, 2 * dLength);
         ctx.lineTo(0, dLength);
+        ctx.stroke();
 
+        ctx.beginPath();
         ctx.strokeStyle = (bit & 0x20) ? "#00FFFF" : "#00007D";
         ctx.moveTo(0, dLength);
         ctx.lineTo(0, 0);
+        ctx.stroke();
 
+        ctx.beginPath();
         ctx.strokeStyle = (bit & 0x40) ? "#00FFFF" : "#00007D";
         ctx.moveTo(0, dLength);
         ctx.lineTo(dLength, dLength);

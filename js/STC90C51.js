@@ -1415,7 +1415,7 @@ var STC90C51 = {
 				a = STC90C51.ACC();
 			debugger;
 			var addr = a + (dph << 8 | dpl),
-				data = STC90C51.PFM[addr];
+				data = getData16(addr);
 			STC90C51.ACC(data);
 			STC90C51.PC++;
 			var asStr = "MOVC A,@A+DPTR";
