@@ -60,8 +60,8 @@ function draw() {
     if(typeof dig1 === "function"){
         seg = dig1() << 0 | dig2() <<1 | dig3() <<2 | dig4() <<3 | dig5() <<4 | dig6() <<5 | dig7() <<6 | dig8() <<7;
     }
-    drawDigit(~seg, bit);
-    var ledPin = 0XFF;
+    drawDigit(~seg, 0x7F);
+    var ledPin = 0X00;
     if(typeof LED0 === "function"){
         ledPin = (LED0() << 0 | LED1() << 1 | LED2() << 2 | LED3() << 3 | LED4() << 4 | LED5() << 5 | LED6() << 6 | LED7() << 7);
     }
@@ -70,7 +70,7 @@ function draw() {
     console.log("%cP1:"+STC90C51.P1(),"color:green");
     console.log("%cP2:"+STC90C51.P2(),"color:green");
     console.log("%cP3:"+STC90C51.P3(),"color:green");
-    drawLED(ledPin);
+    drawLED(~ledPin);
 
     requestAnimationFrame(draw);
 }
@@ -87,26 +87,11 @@ function drawSCM() {
     img.onload = function() {
         ctx2.drawImage(img, canWidth / 2 - scmWidth / 2 - 100, 180, scmWidth, scmHeight);
     };
-    //绘制方案
-    /*var scmWidth = 200,
-        scmHeight = 100,
-        scmX = ( canWidth - scmWidth ) /2,
-        scmY = ( canHeight - scmHeight) /2;
-    //绘制
-    ctx.beginPath();
-    ctx.fillStyle = "#000000";
-    ctx.fillRect(scmX,scmY,scmWidth,scmHeight);
-    ctx.closePath();
-
-    var offset = 30;
-    ctx.font = offset + "px Arial";
-    ctx.textAlign = "left";
-    ctx.fillStyle = "#606060";
-    ctx.fillText("STC90C51", scmX + offset, scmY + scmHeight/2 );*/
 }
 
 //绘制LED灯
 function drawLED(pins) {
+    debugger
     var ledPosX = canWidth - 100,
         ledPosY = 100,
         ledWidth = 60,

@@ -8,7 +8,7 @@ window.onload = function () {
     for(i=0,len=pins.length;i<len;i++){
         pins[i].addEventListener('change',pinChangeHandler,false);
     }
-
+    //绑定事件
     var stepBtn = document.getElementById("step"),
         runBtn = document.getElementById("run"),
         pauseBtn = document.getElementById("pause"),
@@ -18,6 +18,7 @@ window.onload = function () {
     
     stepBtn.onclick = step;
     runBtn.onclick = run;
+    stopBtn.onclick=stop;
     pauseBtn.onclick = function() {
         STC90C51.isPause = true;
     };
@@ -40,6 +41,8 @@ window.onload = function () {
     if(PFM){
         STC90C51.PFM = PFM.split(",");
     }
+    //单片机初始化
+    STC90C51.reset();
     canvasInit();
     draw();
 };
@@ -57,8 +60,7 @@ function fileHander(evt){
     if (files[0]) {
         var reader = new FileReader();
         reader.readAsText(files[0]);
-        //重置机器指令顺序表
-        macInsSeqTab = [];
+        //文件加载成功后再将指令载入到PFM中
         reader.onload = function(evt) {
             STC90C51.reset();
             fileString = evt.target.result;
@@ -125,6 +127,11 @@ function run() {
         if (STC90C51.isPause)
             clearInterval(intervalFlag);
     }, 1);
+}
+
+function stop(){
+    STC90C51.isPause = true;
+    STC90C51.reset();
 }
 
 

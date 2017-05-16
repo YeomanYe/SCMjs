@@ -2098,6 +2098,7 @@ function Addc(data) {
 		STC90C51.PSW(STC90C51.PSW() & 0XBF);
 	}
 	//判断是否有进位
+	debugger;
 	if (a_data > result && data > result) {
 		STC90C51.PSW(STC90C51.PSW() | 0X80);
 	} else {
