@@ -106,13 +106,94 @@ function pinBound(portElem){
     }
 }
 
+//CPU打断时间
+var INTERRUPT_PERIOD = 12,
+    interruptPeriod = INTERRUPT_PERIOD;
+
 //运行下一条指令
 function step() {
     if (STC90C51.PC >= 64 * 1024) STC90C51.PC = 0;
     //执行对应指令的函数
     var ins = parseInt(STC90C51.PFM[STC90C51.PC], 16);
     var retObj = STC90C51.cmdFunc[ins]();
-    //instrStack.push(retObj);
+    //定时器计数
+    timerCount(retObj.period);
+    // 当中断查询计数器小于等于0，则开始查询中断。
+    interruptPeriod -= retObj.period;
+    if (interruptPeriod <= 0) {
+        interruptPeriod = INTERRUPT_PERIOD;
+        //判断中断是否开启，即EA是否为1
+        if (!STC90C51.getSFRsBit(0XAF)) return;
+        //判断定时器0是否开启,并且产生中断
+        if (STC90C51.getSFRsBit(0XA9) && STC90C51.getSFRsBit(0X8D)) {
+            interruptResponse(0X0B);
+        }
+    }
+}
+var time0=0,time1=0,time2=0;
+function timerCount(period) {
+    var count = 0;
+    //模式
+    var mode;
+    //定时器处理函数
+    function timerHandler(tl, th, cont, mode, timeNum) {
+        var l = tl(),
+            h = th();
+        //阈值
+        var threshold = 255;
+        if (!mode || mode == 1) {
+            threshold = mode ? 255 : 31;
+            if (l + cont > threshold) {
+                tl(l + cont - threshold);
+                if (h + 1 > 255) {
+                    th(0x00);
+                    if (timeNum === 0) {
+                        //将TR0置0
+                        STC90C51.setSFRsBit(0x8C, 0);
+                        //将TF0置1
+                        STC90C51.setSFRsBit(0X8D, 1);
+                    }
+                } else {
+                    th(h + 1);
+                }
+            } else {
+                tl(l + cont);
+            }
+        }else if(mode == 2){
+            if(l + cont > threshold){
+                tl(h);
+                //将TR0置0
+                STC90C51.setSFRsBit(0x8C, 0);
+                //将TF0置1
+                STC90C51.setSFRsBit(0X8D, 1);
+            }else tl(l+cont);
+        }
+
+    }
+    //TR值为1，并且C/T为0才能定时
+    if (STC90C51.getSFRsBit(0X8C) && !(STC90C51.SFRs[0X89 - 0X80] & 0x40)) {
+        time0 += period;
+        if (time0 > 12) {
+            count = time0 % 12;
+            time0 = time0 - count * 12;
+            mode = STC90C51.SFRs[0X89 - 0X80] & 0x03;
+            timerHandler(STC90C51.TL0, STC90C51.TH0, count, mode, 0);
+        }
+    }
+}
+
+function interruptResponse(num) {
+    //判断中断号是否已经加入到数组中，即程序是否已经响应了中断。
+    if (STC90C51.IVT.indexOf(num) == -1) {
+        //如果还未响应中断则响应中断，如果已经响应了中断，判断优先级是否比最后一个大，如果大才响应中断
+        if (STC90C51.IVT.length > 0 && ((interruptPriority(num) > interruptPriority(STC90C51.IVT[STC90C51.IVT.length - 1]))) || STC90C51.IVT.length === 0) {
+            //将中断号加入中断数组中
+            STC90C51.IVT.push(num);
+            STC90C51.RAM[STC90C51.SP(STC90C51.SP()+1)] = STC90C51.PC & 0XFF;
+            STC90C51.RAM[STC90C51.SP(STC90C51.SP()+1)] = (STC90C51.PC >> 8) & 0XFF;
+            STC90C51.PC = num;
+        }
+    }
 }
 
 

@@ -59,9 +59,12 @@ function timerCount(period) {
     function timerHandler(tl, th, cont, mode, timeNum) {
         var l = tl(),
             h = th();
-        if (!mode) {
-            if (l + cont > 32) {
-                tl(l + cont - 32);
+        //阈值
+    	var threshold = 255;
+        if (!mode || mode == 1) {
+            threshold = mode ? 255 : 31;
+            if (l + cont > threshold) {
+                tl(l + cont - threshold);
                 if (h + 1 > 255) {
                     th(0x00);
                     if (timeNum === 0) {
@@ -76,6 +79,14 @@ function timerCount(period) {
             } else {
                 tl(l + cont);
             }
+        }else if(mode == 2){
+        	if(l + cont > threshold){
+        		tl(h);
+        		//将TR0置0
+                STC90C51.setSFRsBit(0x8C, 0);
+                //将TF0置1
+                STC90C51.setSFRsBit(0X8D, 1);
+        	}else tl(l+cont);
         }
 
     }
@@ -89,11 +100,6 @@ function timerCount(period) {
             timerHandler(STC90C51.TL0, STC90C51.TH0, count, mode, 0);
         }
     }
-
-    if (period > 12) {
-
-    }
-    //0或1增加函数
 }
 
 function interruptResponse(num) {
