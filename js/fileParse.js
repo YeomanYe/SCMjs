@@ -115,13 +115,23 @@ function generateInterrupt(){
         //外部中断0
        if(STC90C51.PFM[interruptAddr[i]]){
             STC90C51.PC = interruptAddr[i];
+            var count = 0;
             while(1){
+                if(!count){
+                    //添加一个标志位
+                    macInsSeqTab[macInsSeqTab.length] = -1;
+                    liElem = document.createElement("li");
+                    liElem.innerHTML = "中断"+i;
+                    liElem.style.color="purple";
+                    codeElem.appendChild(liElem);
+                }
+                count++;
                 macInsSeqTab[macInsSeqTab.length] = STC90C51.PC;
                 ins = parseInt(STC90C51.PFM[STC90C51.PC], 16);
                 retData = STC90C51.cmdFunc[ins]();
                 liElem = document.createElement("li");
                 liElem.ondblclick = setBreakpoint;
-                liElem.innerHTML = macInsSeqTab.length + ". " + retData.asStr;
+                liElem.innerHTML = count + ". " + retData.asStr;
                 codeElem.appendChild(liElem);
                 if(retData.asStr.indexOf("RETI")!=-1) break;
             }
