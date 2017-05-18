@@ -60,7 +60,7 @@ function draw() {
     if(typeof dig1 === "function"){
         seg = dig1() << 0 | dig2() <<1 | dig3() <<2 | dig4() <<3 | dig5() <<4 | dig6() <<5 | dig7() <<6 | dig8() <<7;
     }
-    drawDigit(~seg, 0x7F);
+    drawDigit(~seg, bit);
     var ledPin = 0X00;
     if(typeof LED0 === "function"){
         ledPin = (LED0() << 0 | LED1() << 1 | LED2() << 2 | LED3() << 3 | LED4() << 4 | LED5() << 5 | LED6() << 6 | LED7() << 7);

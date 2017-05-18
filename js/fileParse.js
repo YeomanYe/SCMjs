@@ -43,6 +43,13 @@ function resetShow() {
  */
 function generateAssembly() {
     STC90C51.PC = 0;
+    generateSequence();
+    generateInterrupt();
+    //反编译完成后进行单片机的复位工作
+    STC90C51.reset();
+}
+
+function generateSequence(){
     var PFM2 = [];
     //统计执行了的机器码的数量。
     var lenCount = 0;
@@ -53,73 +60,99 @@ function generateAssembly() {
     var prevPC;
     //连续相同的次数
     var loop;
+    //返回的数据、指令的数据所占字节数
+    var retData,instructNum;
+    //添加指令到汇编指令列表
+    var codeElem = document.getElementById("code");
+    //添加的li元素
+    var liElem;
     while (1) {
-        if (PFM2[STC90C51.PC] != STC90C51.PFM[STC90C51.PC]) {
+        if (PFM2[STC90C51.PC] == STC90C51.PFM[STC90C51.PC]) {
+            loop++;
+            ins = parseInt(STC90C51.PFM[STC90C51.PC], 16);
+            STC90C51.cmdFunc[ins]();
+        } else {
+            loop = 0;
             //放入PC到指令顺序表
             macInsSeqTab[macInsSeqTab.length] = STC90C51.PC;
             PFM2[STC90C51.PC] = STC90C51.PFM[STC90C51.PC];
             var tmpPC = STC90C51.PC;
             prevPC = STC90C51.PC;
             ins = parseInt(STC90C51.PFM[STC90C51.PC], 16);
-            var retData = STC90C51.cmdFunc[ins]();
-            var instructNum = retData.num - 1;
+            retData = STC90C51.cmdFunc[ins]();
+            instructNum = retData.num - 1;
             while (instructNum) {
                 ++tmpPC;
                 PFM2[tmpPC] = STC90C51.PFM[tmpPC];
                 instructNum--;
             }
             lenCount += retData.num;
-            /*console.warn("%clenCount:" + lenCount + ", PFMLen:" + STC90C51.PFM.join(" ").replace(/(^\s*)|(\s*$)/g, "").replace(/(\W\s{1,}\W)/g, " ").split(" ").length, "font-size:5em;color:green;");*/
-            //添加指令到汇编指令列表
-            var codeElem = document.getElementById("code");
-            var liElem = document.createElement("li");
+            liElem = document.createElement("li");
             liElem.ondblclick = setBreakpoint;
             liElem.innerHTML = macInsSeqTab.length + ". " + retData.asStr;
             codeElem.appendChild(liElem);
-            loop=0;
-        } else {
-            /*tmpPC = prevPC;
-            prevPC = STC90C51.PC;
-            STC90C51.PC = tmpPC + 1;*/
-            loop++;
-            STC90C51.PC = prevPC++;
+
+            strPFM2 = PFM2.join(" ").replace(/(^\s*)|(\s*$)/g, "").replace(/(\W\s{1,}\W)/g, " ");
+            if (strPFM == strPFM2) {
+                console.log("PFM2: " + PFM2.join(" ").replace(/(^\s*)|(\s*$)/g, "").replace(/(\W\s{1,}\W)/g, " "));
+                break;
+            }
         }
-        strPFM2 = PFM2.join(" ").replace(/(^\s*)|(\s*$)/g, "").replace(/(\W\s{1,}\W)/g, " ");
-        if (strPFM == strPFM2) {
-            console.log("PFM2: " + PFM2.join(" ").replace(/(^\s*)|(\s*$)/g, "").replace(/(\W\s{1,}\W)/g, " "));
-            break;
-        }
-        //连续循环10次找不到不同的指令则退出
-        if(loop>=10) break;
+
+        //连续循环5000次找不到不同的指令则退出
+        if (loop >= 5000) break;
     }
-    //反编译完成后进行单片机的复位工作
-    STC90C51.reset();
 }
 
-function setBreakpoint(event){
-	var elem = event.currentTarget,
-		parent = elem.parentNode,
-		liElems = parent.children,
-		index = 0,
-		num = 0;
-	for(var len=liElems.length;index<len;index++){
-		if(liElems[index]===elem)
-			break;
-	}
-	//查询断点表中是否有断点，如果有则删除该断点
-	if(-1 != (num = breakPointArr.indexOf(index+1))){
-		//从数组中去除
-		breakPointArr.splice(num,1);
-	}else{
-		//添加到数组中
-		breakPointArr.push(index+1);
-	}
-	//查询禁用断点列表中是否有该断点如果有则删除
-	if(-1 != (num = disabledBreakpointArr.indexOf(index+1))){
-		disabledBreakpointArr.splice(num,1);
-	}
-	//高亮对应的代码块
-	highLightBreakpoint();
+function generateInterrupt(){
+    var codeElem = document.getElementById("code");
+    var liElem,retData,ins;
+    var i=0,len;
+    //中断程序反汇编生成
+    var interruptAddr = [0x03,0x0B,0x13,0x1B,0x23,0x2B,0x33,0x3B];
+    //中断指令生成
+    for(i=0,len=interruptAddr.length;i<len;i++){
+        //外部中断0
+       if(STC90C51.PFM[interruptAddr[i]]){
+            STC90C51.PC = interruptAddr[i];
+            while(1){
+                macInsSeqTab[macInsSeqTab.length] = STC90C51.PC;
+                ins = parseInt(STC90C51.PFM[STC90C51.PC], 16);
+                retData = STC90C51.cmdFunc[ins]();
+                liElem = document.createElement("li");
+                liElem.ondblclick = setBreakpoint;
+                liElem.innerHTML = macInsSeqTab.length + ". " + retData.asStr;
+                codeElem.appendChild(liElem);
+                if(retData.asStr.indexOf("RETI")!=-1) break;
+            }
+       }
+    }
+}
+
+function setBreakpoint(event) {
+    var elem = event.currentTarget,
+        parent = elem.parentNode,
+        liElems = parent.children,
+        index = 0,
+        num = 0;
+    for (var len = liElems.length; index < len; index++) {
+        if (liElems[index] === elem)
+            break;
+    }
+    //查询断点表中是否有断点，如果有则删除该断点
+    if (-1 != (num = breakPointArr.indexOf(index + 1))) {
+        //从数组中去除
+        breakPointArr.splice(num, 1);
+    } else {
+        //添加到数组中
+        breakPointArr.push(index + 1);
+    }
+    //查询禁用断点列表中是否有该断点如果有则删除
+    if (-1 != (num = disabledBreakpointArr.indexOf(index + 1))) {
+        disabledBreakpointArr.splice(num, 1);
+    }
+    //高亮对应的代码块
+    highLightBreakpoint();
 }
 
 //高亮下一条汇编语句
