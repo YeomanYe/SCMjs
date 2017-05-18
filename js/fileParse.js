@@ -49,7 +49,7 @@ function generateAssembly() {
     STC90C51.reset();
 }
 
-function generateSequence(){
+function generateSequence() {
     var PFM2 = [];
     //统计执行了的机器码的数量。
     var lenCount = 0;
@@ -61,7 +61,7 @@ function generateSequence(){
     //连续相同的次数
     var loop;
     //返回的数据、指令的数据所占字节数
-    var retData,instructNum;
+    var retData, instructNum;
     //添加指令到汇编指令列表
     var codeElem = document.getElementById("code");
     //添加的li元素
@@ -104,25 +104,26 @@ function generateSequence(){
     }
 }
 
-function generateInterrupt(){
+function generateInterrupt() {
     var codeElem = document.getElementById("code");
-    var liElem,retData,ins;
-    var i=0,len;
+    var liElem, retData, ins;
+    var i = 0,
+        len;
     //中断程序反汇编生成
-    var interruptAddr = [0x03,0x0B,0x13,0x1B,0x23,0x2B,0x33,0x3B];
+    var interruptAddr = [0x03, 0x0B, 0x13, 0x1B, 0x23, 0x2B, 0x33, 0x3B];
     //中断指令生成
-    for(i=0,len=interruptAddr.length;i<len;i++){
+    for (i = 0, len = interruptAddr.length; i < len; i++) {
         //外部中断0
-       if(STC90C51.PFM[interruptAddr[i]]){
+        if (STC90C51.PFM[interruptAddr[i]]) {
             STC90C51.PC = interruptAddr[i];
             var count = 0;
-            while(1){
-                if(!count){
+            while (1) {
+                if (!count) {
                     //添加一个标志位
                     macInsSeqTab[macInsSeqTab.length] = -1;
                     liElem = document.createElement("li");
-                    liElem.innerHTML = "中断"+i;
-                    liElem.style.color="purple";
+                    liElem.innerHTML = "中断" + i;
+                    liElem.style.color = "purple";
                     codeElem.appendChild(liElem);
                 }
                 count++;
@@ -133,9 +134,9 @@ function generateInterrupt(){
                 liElem.ondblclick = setBreakpoint;
                 liElem.innerHTML = count + ". " + retData.asStr;
                 codeElem.appendChild(liElem);
-                if(retData.asStr.indexOf("RETI")!=-1) break;
+                if (retData.asStr.indexOf("RETI") != -1) break;
             }
-       }
+        }
     }
 }
 
