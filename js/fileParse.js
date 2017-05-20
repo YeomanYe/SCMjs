@@ -75,18 +75,10 @@ function generateSequence() {
             loop = 0;
             //放入PC到指令顺序表
             macInsSeqTab[macInsSeqTab.length] = STC90C51.PC;
-            PFM2[STC90C51.PC] = STC90C51.PFM[STC90C51.PC];
-            var tmpPC = STC90C51.PC;
-            prevPC = STC90C51.PC;
+            PFM2[STC90C51.PC] = STC90C51.PFM[STC90C51.PC];        
             ins = parseInt(STC90C51.PFM[STC90C51.PC], 16);
             retData = STC90C51.cmdFunc[ins]();
-            instructNum = retData.num - 1;
-            while (instructNum) {
-                ++tmpPC;
-                PFM2[tmpPC] = STC90C51.PFM[tmpPC];
-                instructNum--;
-            }
-            lenCount += retData.num;
+    
             liElem = document.createElement("li");
             liElem.ondblclick = setBreakpoint;
             liElem.innerHTML = macInsSeqTab.length + ". " + retData.asStr;
@@ -169,11 +161,8 @@ function setBreakpoint(event) {
 //高亮下一条汇编语句
 function highLightCurAss() {
     var i = macInsSeqTab.indexOf(STC90C51.PC),
-        allAssElems = document.querySelectorAll("#code .cur"),
-        curAssElem = document.getElementById("code").children[i];
-    for (var j = 0, len = allAssElems.length; j < len; j++) {
-        if (allAssElems[j])
-            removeClass(allAssElems[j], "cur");
-    }
+        curAssElem = document.getElementById("code").children[i],
+        allAssElems = document.querySelector("#code .cur");
+    if(allAssElems) removeClass(allAssElems, "cur");
     addClass(curAssElem, "cur");
 }

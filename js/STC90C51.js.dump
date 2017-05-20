@@ -316,15 +316,15 @@ var STC90C51 = {
 				break;
 			} else if (reacordType === 0x01) {
 				//console.log("file error");
-				alert("文件错误!");
+				alert("File Error!");
 				return;
 			} else if (addrField > 0xffff) {
 				//console.log("address error");
-				alert("文件错误!");
+				alert("File Error!");
 				return;
 			} else if (dataLen !== (recordLen - 2 - 8) / 2) {
 				//console.log("data format error");
-				alert("文件错误!");
+				alert("File Error!");
 				return;
 			}
 			if (this.isRecord(data, validation)) {
@@ -335,7 +335,7 @@ var STC90C51 = {
 			} else {
 				//校验失败，输入数据有误
 				//console.log("data error");
-				alert("文件错误!");
+				alert("File Error!");
 				break;
 			}
 		}
