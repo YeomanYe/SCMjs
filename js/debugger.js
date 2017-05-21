@@ -4,13 +4,17 @@ var instrStack = [];
 function showPFM() {
     var pfmArr = STC90C51.PFM;
     var p = document.getElementById("pfm");
+    var i,len;
     //清空标签P中的内容
     p.innerHTML = "";
     //统计空白单元数
     var count = 0;
-    for (var i = 0; i < pfmArr.length; i++) {
+    var countArr = [0];
+    for (i = 0,len=pfmArr.length; i < len; i++) {
         var span = document.createElement("span");
         if (pfmArr[i]) {
+        	if(count) countArr.push(countArr[countArr.length-1]+count);
+        	count=0;
             span.innerHTML = pfmArr[i];
             p.appendChild(span);
         } else {
@@ -19,8 +23,11 @@ function showPFM() {
     }
     //根据PC指针来高亮代码段
     var pc = STC90C51.PC;
-    if (pc > count) {
-        pc -= count;
+    for(i=1,len=countArr.length;i<=len;i++){
+    	if(pc>countArr[len - i]){
+    		pc -= countArr[len-i];
+    		break;
+    	}
     }
     p.children[pc].setAttribute("class", "curpfm");
 }

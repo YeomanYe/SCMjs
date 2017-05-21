@@ -203,6 +203,11 @@ function interruptResponse(num) {
  */
 function run() {
     STC90C51.isPause = false;
+    if(STC90C51.isStop) {
+        debugger;
+        STC90C51.reset();
+        STC90C51.isStop=false;
+    }
     var intervalFlag = setInterval(function() {
         step();
         if (STC90C51.isPause)
@@ -211,8 +216,9 @@ function run() {
 }
 
 function stop(){
-    STC90C51.isPause = true;
     STC90C51.reset();
+    STC90C51.isPause = true;
+    STC90C51.isStop = true;
 }
 
 

@@ -91,7 +91,6 @@ function drawSCM() {
 
 //绘制LED灯
 function drawLED(pins) {
-    debugger
     var ledPosX = canWidth - 100,
         ledPosY = 100,
         ledWidth = 60,
@@ -123,13 +122,6 @@ function drawLED(pins) {
 
 //绘制数码管
 function drawDigit(seg, bit) {
-    /*var digWidth = 403,digHeight = 90;
-    //加载Digit图片
-    var img = new Image();
-    img.src = "img/Digit.png";
-    img.onload = function(){
-        ctx.drawImage(img,100,50,digWidth,digHeight);
-    };*/
     var digWidth = 400,
         digHeight = 100,
         digPosX = 100,

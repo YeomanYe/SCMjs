@@ -84,11 +84,6 @@ function generateSequence() {
             liElem.innerHTML = macInsSeqTab.length + ". " + retData.asStr;
             codeElem.appendChild(liElem);
 
-            strPFM2 = PFM2.join(" ").replace(/(^\s*)|(\s*$)/g, "").replace(/(\W\s{1,}\W)/g, " ");
-            if (strPFM == strPFM2) {
-                console.log("PFM2: " + PFM2.join(" ").replace(/(^\s*)|(\s*$)/g, "").replace(/(\W\s{1,}\W)/g, " "));
-                break;
-            }
         }
 
         //连续循环5000次找不到不同的指令则退出

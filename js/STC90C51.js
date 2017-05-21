@@ -68,8 +68,10 @@ var Ri_MOV_DIR = R_Factory("Ri_MOV_DIR");
 var Rn_MOV_DIR = R_Factory("Rn_MOV_DIR");
 
 var STC90C51 = {
-	//标志CPU是否停止
+	//标志CPU是否暂停
 	isPause: false,
+	//标志CPU是否停止
+	isStop:false,
 	//程序存储器
 	PFM: new Array(64 * 1024),
 	//数据存储器
@@ -847,7 +849,6 @@ var STC90C51 = {
 					STC90C51.IP(ip & 0X7F);
 					break;
 			}
-			debugger;
 			var sp = STC90C51.SP(),
 				addrh = STC90C51.RAM[sp--],
 				addrl = STC90C51.RAM[sp--];
