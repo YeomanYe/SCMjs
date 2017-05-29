@@ -121,7 +121,7 @@ function step() {
     // 当中断查询计数器小于等于0，则开始查询中断。
     interruptPeriod -= retObj.period;
     if (interruptPeriod <= 0) {
-        interruptPeriod = INTERRUPT_PERIOD;
+        interruptPeriod += INTERRUPT_PERIOD;
         //判断中断是否开启，即EA是否为1
         if (!STC90C51.getSFRsBit(0XAF)) return;
         //判断定时器0是否开启,并且产生中断
