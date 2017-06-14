@@ -87,7 +87,7 @@ function generateSequence() {
         }
 
         //连续循环5000次找不到不同的指令则退出
-        if (loop >= 5000) break;
+        if (loop >= 5000 || STC90C51.PC == -1) break;
     }
 }
 

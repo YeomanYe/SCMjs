@@ -72,7 +72,7 @@ function draw() {
     console.log("%cP3:"+STC90C51.P3(),"color:green");
     drawLED(~ledPin);
 
-    requestAnimationFrame(draw);
+    setTimeout(draw,0);
 }
 
 
