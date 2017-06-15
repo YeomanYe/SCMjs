@@ -18,7 +18,7 @@ window.onload = function () {
     
     stepBtn.onclick = step;
     runBtn.onclick = function(){
-        var num = 300;
+        var num = 1000;
         while(--num){
             run();
         }
@@ -117,13 +117,10 @@ function pinBound(portElem){
 var INTERRUPT_PERIOD = 12,
     interruptPeriod = INTERRUPT_PERIOD;
 
-var initRunCounter = 5000;
-var runCounter = initRunCounter;
 
 //运行下一条指令
 function step() {
-    while(true){
-        //执行对应指令的函数
+    //执行对应指令的函数
     var ins = parseInt(STC90C51.PFM[STC90C51.PC], 16);
     var retObj = STC90C51.cmdFunc[ins]();
     //定时器计数
@@ -139,8 +136,6 @@ function step() {
             interruptResponse(0X0B);
         }
     }
-    }
-    runCounter=initRunCounter;
 }
 var time0=0,time1=0,time2=0;
 function timerCount(period) {
