@@ -17,7 +17,12 @@ window.onload = function () {
     fileBtn.addEventListener('change',fileHander,false);
     
     stepBtn.onclick = step;
-    runBtn.onclick = run;
+    runBtn.onclick = function(){
+        var num = 300;
+        while(--num){
+            run();
+        }
+    };
     stopBtn.onclick=stop;
     pauseBtn.onclick = function() {
         STC90C51.isPause = true;
@@ -44,7 +49,9 @@ window.onload = function () {
     //单片机初始化
     STC90C51.reset();
     canvasInit();
-    draw();
+    var num = 10;
+    while(num--)
+        draw();
 };
 //数码管位选端口
 var digA,digB,digC,digD,digE,digF,digG,digDP;
@@ -110,10 +117,13 @@ function pinBound(portElem){
 var INTERRUPT_PERIOD = 12,
     interruptPeriod = INTERRUPT_PERIOD;
 
+var initRunCounter = 5000;
+var runCounter = initRunCounter;
+
 //运行下一条指令
 function step() {
-    if (STC90C51.PC >= 64 * 1024) STC90C51.PC = 0;
-    //执行对应指令的函数
+    while(true){
+        //执行对应指令的函数
     var ins = parseInt(STC90C51.PFM[STC90C51.PC], 16);
     var retObj = STC90C51.cmdFunc[ins]();
     //定时器计数
@@ -129,6 +139,8 @@ function step() {
             interruptResponse(0X0B);
         }
     }
+    }
+    runCounter=initRunCounter;
 }
 var time0=0,time1=0,time2=0;
 function timerCount(period) {
@@ -204,7 +216,6 @@ function interruptResponse(num) {
 function run() {
     STC90C51.isPause = false;
     if(STC90C51.isStop) {
-        debugger;
         STC90C51.reset();
         STC90C51.isStop=false;
     }
@@ -212,7 +223,7 @@ function run() {
         step();
         if (STC90C51.isPause)
             clearInterval(intervalFlag);
-    }, 1);
+    }, 0);
 }
 
 function stop(){

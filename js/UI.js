@@ -48,6 +48,8 @@ function drawBack() {
     ctx.closePath();
 }
 
+var drawCount = 30;
+
 function draw() {
     ctx.clearRect(0,0,canWidth,canHeight);
     drawBack();
@@ -72,7 +74,7 @@ function draw() {
     console.log("%cP3:"+STC90C51.P3(),"color:green");
     drawLED(~ledPin);
 
-    requestAnimationFrame(draw);
+    setTimeout(draw,0);
 }
 
 
